@@ -1,4 +1,4 @@
-# [`bunny-sdk`](https://bunny-launcher.com/bunny-sdk/python)
+# bunny-sdk
 
 ![PyPI - Version](https://img.shields.io/pypi/v/bunny-sdk?color=blue)
 
