@@ -23,6 +23,7 @@ Please read the [docs](https://bunny-launcher.com/bunny-sdk/python) for usage an
 - `poetry install`
 - `source .venv/bin/activate`
 - `pip install -e .`
+- `poetry version patch`
 - `poetry build`
 - `git add -A`
 - `git commit -m "message"`
