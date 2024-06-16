@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .item.videolibrary_item_request_builder import VideolibraryItemRequestBuilder
     from .languages.languages_request_builder import LanguagesRequestBuilder
     from .reset_api_key.reset_api_key_request_builder import ResetApiKeyRequestBuilder
+    from .videolibrary_get_response import VideolibraryGetResponse
     from .videolibrary_post_request_body import VideolibraryPostRequestBody
 
 class VideolibraryRequestBuilder(BaseRequestBuilder):
@@ -46,20 +47,20 @@ class VideolibraryRequestBuilder(BaseRequestBuilder):
         url_tpl_params["id"] = id
         return VideolibraryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[VideolibraryRequestBuilderGetQueryParameters]] = None) -> Optional[List[VideoLibrary]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[VideolibraryRequestBuilderGetQueryParameters]] = None) -> Optional[VideolibraryGetResponse]:
         """
         [ListVideoLibraries API Docs](https://docs.bunny.net/reference/videolibrarypublic_index)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[List[VideoLibrary]]
+        Returns: Optional[VideolibraryGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.stream_video_library.video_library import VideoLibrary
+        from .videolibrary_get_response import VideolibraryGetResponse
 
-        return await self.request_adapter.send_collection_async(request_info, VideoLibrary, None)
+        return await self.request_adapter.send_async(request_info, VideolibraryGetResponse, None)
     
     async def post(self,body: VideolibraryPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[VideoLibrary]:
         """

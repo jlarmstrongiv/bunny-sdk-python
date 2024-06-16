@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .checkavailability.checkavailability_request_builder import CheckavailabilityRequestBuilder
     from .item.storagezone_item_request_builder import StoragezoneItemRequestBuilder
     from .reset_read_only_password.reset_read_only_password_request_builder import ResetReadOnlyPasswordRequestBuilder
+    from .storagezone_get_response import StoragezoneGetResponse
 
 class StoragezoneRequestBuilder(BaseRequestBuilder):
     """
@@ -46,20 +47,20 @@ class StoragezoneRequestBuilder(BaseRequestBuilder):
         url_tpl_params["id"] = id
         return StoragezoneItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[StoragezoneRequestBuilderGetQueryParameters]] = None) -> Optional[List[StorageZone]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[StoragezoneRequestBuilderGetQueryParameters]] = None) -> Optional[StoragezoneGetResponse]:
         """
         [ListStorageZones API Docs](https://docs.bunny.net/reference/storagezonepublic_index)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[List[StorageZone]]
+        Returns: Optional[StoragezoneGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.storage_zone.storage_zone import StorageZone
+        from .storagezone_get_response import StoragezoneGetResponse
 
-        return await self.request_adapter.send_collection_async(request_info, StorageZone, None)
+        return await self.request_adapter.send_async(request_info, StoragezoneGetResponse, None)
     
     async def post(self,body: StorageZoneCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[StorageZone]:
         """

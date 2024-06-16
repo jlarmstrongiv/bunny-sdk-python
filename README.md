@@ -20,6 +20,7 @@ Please read the [docs](https://bunny-launcher.com/bunny-sdk/python) for usage an
 - `brew install pipx`
 - `pipx ensurepath`
 - `pipx install poetry==1.8.2`
+
 - `poetry install`
 - `source .venv/bin/activate`
 - `pip install -e .`

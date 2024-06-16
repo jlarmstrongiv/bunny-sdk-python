@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .checkavailability.checkavailability_request_builder import CheckavailabilityRequestBuilder
     from .item.item_request_builder import ItemRequestBuilder
     from .load_free_certificate.load_free_certificate_request_builder import LoadFreeCertificateRequestBuilder
+    from .pullzone_get_response import PullzoneGetResponse
 
 class PullzoneRequestBuilder(BaseRequestBuilder):
     """
@@ -46,20 +47,20 @@ class PullzoneRequestBuilder(BaseRequestBuilder):
         url_tpl_params["%2Did"] = id
         return ItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[PullzoneRequestBuilderGetQueryParameters]] = None) -> Optional[List[PullZone]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[PullzoneRequestBuilderGetQueryParameters]] = None) -> Optional[PullzoneGetResponse]:
         """
         [ListPullZones API Docs](https://docs.bunny.net/reference/pullzonepublic_index)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[List[PullZone]]
+        Returns: Optional[PullzoneGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.pull_zone.pull_zone import PullZone
+        from .pullzone_get_response import PullzoneGetResponse
 
-        return await self.request_adapter.send_collection_async(request_info, PullZone, None)
+        return await self.request_adapter.send_async(request_info, PullzoneGetResponse, None)
     
     async def post(self,body: PullZoneCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PullZone]:
         """

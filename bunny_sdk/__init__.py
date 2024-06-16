@@ -10,9 +10,9 @@ from .generated.EdgeStorageApiClient.edge_storage_api_client import EdgeStorageA
 from .generated.StreamApiClient.stream_api_client import StreamApiClient
 
 
-def createBunnyApiClient(api_key: str) -> BunnyApiClient:
+def createBunnyApiClient(access_key: str) -> BunnyApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=api_key, parameter_name="AccessKey"
+        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
 
     request_adapter = HttpxRequestAdapter(authentication_provider)
@@ -20,9 +20,9 @@ def createBunnyApiClient(api_key: str) -> BunnyApiClient:
     return BunnyApiClient(request_adapter)
 
 
-def createEdgeStorageApiClient(api_key: str) -> EdgeStorageApiClient:
+def createEdgeStorageApiClient(access_key: str) -> EdgeStorageApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=api_key, parameter_name="AccessKey"
+        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
 
     request_adapter = HttpxRequestAdapter(authentication_provider)
@@ -30,9 +30,9 @@ def createEdgeStorageApiClient(api_key: str) -> EdgeStorageApiClient:
     return EdgeStorageApiClient(request_adapter)
 
 
-def createStreamApiClient(api_key: str) -> StreamApiClient:
+def createStreamApiClient(access_key: str) -> StreamApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=api_key, parameter_name="AccessKey"
+        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
 
     request_adapter = HttpxRequestAdapter(authentication_provider)
