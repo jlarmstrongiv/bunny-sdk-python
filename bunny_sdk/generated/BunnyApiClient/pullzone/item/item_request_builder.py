@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from .reset_security_key.reset_security_key_request_builder import ResetSecurityKeyRequestBuilder
     from .safehop.safehop_request_builder import SafehopRequestBuilder
     from .set_force_s_s_l.set_force_s_s_l_request_builder import SetForceSSLRequestBuilder
+    from .waf.waf_request_builder import WafRequestBuilder
 
 class ItemRequestBuilder(BaseRequestBuilder):
     """
@@ -290,6 +291,15 @@ class ItemRequestBuilder(BaseRequestBuilder):
         from .set_force_s_s_l.set_force_s_s_l_request_builder import SetForceSSLRequestBuilder
 
         return SetForceSSLRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def waf(self) -> WafRequestBuilder:
+        """
+        The waf property
+        """
+        from .waf.waf_request_builder import WafRequestBuilder
+
+        return WafRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

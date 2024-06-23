@@ -85,14 +85,17 @@ class WithVideoItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, StructuredSuccessResponse, None)
     
-    async def put(self,request_configuration: Optional[RequestConfiguration[WithVideoItemRequestBuilderPutQueryParameters]] = None) -> Optional[StructuredSuccessResponse]:
+    async def put(self,body: bytes, request_configuration: Optional[RequestConfiguration[WithVideoItemRequestBuilderPutQueryParameters]] = None) -> Optional[StructuredSuccessResponse]:
         """
         [UploadVideo API Docs](https://docs.bunny.net/reference/video_uploadvideo)
+        param body: Binary request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StructuredSuccessResponse]
         """
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_put_request_information(
-            request_configuration
+            body, request_configuration
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -137,15 +140,19 @@ class WithVideoItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def to_put_request_information(self,request_configuration: Optional[RequestConfiguration[WithVideoItemRequestBuilderPutQueryParameters]] = None) -> RequestInformation:
+    def to_put_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration[WithVideoItemRequestBuilderPutQueryParameters]] = None) -> RequestInformation:
         """
         [UploadVideo API Docs](https://docs.bunny.net/reference/video_uploadvideo)
+        param body: Binary request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
+        request_info.set_stream_content(body, "application/octet-stream")
         return request_info
     
     def with_url(self,raw_url: str) -> WithVideoItemRequestBuilder:

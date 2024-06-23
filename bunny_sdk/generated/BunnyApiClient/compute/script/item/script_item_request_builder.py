@@ -13,27 +13,29 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from ...models.storage_zone.storage_zone import StorageZone
-    from ...models.storage_zone.storage_zone_create import StorageZoneCreate
-    from .connections.connections_request_builder import ConnectionsRequestBuilder
-    from .reset_password.reset_password_request_builder import ResetPasswordRequestBuilder
-    from .statistics.statistics_request_builder import StatisticsRequestBuilder
+    from ....models.compute.script import Script
+    from ....models.compute.script_create import ScriptCreate
+    from .code.code_request_builder import CodeRequestBuilder
+    from .publish.publish_request_builder import PublishRequestBuilder
+    from .releases.releases_request_builder import ReleasesRequestBuilder
+    from .variables.variables_request_builder import VariablesRequestBuilder
 
-class StoragezoneItemRequestBuilder(BaseRequestBuilder):
+class ScriptItemRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /storagezone/{id}
+    Builds and executes requests for operations under /compute/script/{id}
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
-        Instantiates a new StoragezoneItemRequestBuilder and sets the default values.
+        Instantiates a new ScriptItemRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/storagezone/{id}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/compute/script/{id}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
+        [DeleteComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_delete)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
@@ -44,27 +46,27 @@ class StoragezoneItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, None)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[StorageZone]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Script]:
         """
-        [GetStorageZone API Docs](https://docs.bunny.net/reference/storagezonepublic_index2)
+        [GetComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_index2)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[StorageZone]
+        Returns: Optional[Script]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.storage_zone.storage_zone import StorageZone
+        from ....models.compute.script import Script
 
-        return await self.request_adapter.send_async(request_info, StorageZone, None)
+        return await self.request_adapter.send_async(request_info, Script, None)
     
-    async def post(self,body: StorageZoneCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
+    async def post(self,body: ScriptCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Script]:
         """
-        [UpdateStorageZone API Docs](https://docs.bunny.net/reference/storagezonepublic_update)
+        [UpdateComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_update)
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: None
+        Returns: Optional[Script]
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -73,10 +75,13 @@ class StoragezoneItemRequestBuilder(BaseRequestBuilder):
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, None)
+        from ....models.compute.script import Script
+
+        return await self.request_adapter.send_async(request_info, Script, None)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
+        [DeleteComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_delete)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -86,7 +91,7 @@ class StoragezoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        [GetStorageZone API Docs](https://docs.bunny.net/reference/storagezonepublic_index2)
+        [GetComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_index2)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -95,9 +100,9 @@ class StoragezoneItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: StorageZoneCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: ScriptCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        [UpdateStorageZone API Docs](https://docs.bunny.net/reference/storagezonepublic_update)
+        [UpdateComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_update)
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -106,62 +111,72 @@ class StoragezoneItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: str) -> StoragezoneItemRequestBuilder:
+    def with_url(self,raw_url: str) -> ScriptItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: StoragezoneItemRequestBuilder
+        Returns: ScriptItemRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return StoragezoneItemRequestBuilder(self.request_adapter, raw_url)
+        return ScriptItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def connections(self) -> ConnectionsRequestBuilder:
+    def code(self) -> CodeRequestBuilder:
         """
-        The connections property
+        The code property
         """
-        from .connections.connections_request_builder import ConnectionsRequestBuilder
+        from .code.code_request_builder import CodeRequestBuilder
 
-        return ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return CodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_password(self) -> ResetPasswordRequestBuilder:
+    def publish(self) -> PublishRequestBuilder:
         """
-        The resetPassword property
+        The publish property
         """
-        from .reset_password.reset_password_request_builder import ResetPasswordRequestBuilder
+        from .publish.publish_request_builder import PublishRequestBuilder
 
-        return ResetPasswordRequestBuilder(self.request_adapter, self.path_parameters)
+        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def statistics(self) -> StatisticsRequestBuilder:
+    def releases(self) -> ReleasesRequestBuilder:
         """
-        The statistics property
+        The releases property
         """
-        from .statistics.statistics_request_builder import StatisticsRequestBuilder
+        from .releases.releases_request_builder import ReleasesRequestBuilder
 
-        return StatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ReleasesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def variables(self) -> VariablesRequestBuilder:
+        """
+        The variables property
+        """
+        from .variables.variables_request_builder import VariablesRequestBuilder
+
+        return VariablesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
-    class StoragezoneItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ScriptItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class StoragezoneItemRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ScriptItemRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class StoragezoneItemRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ScriptItemRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

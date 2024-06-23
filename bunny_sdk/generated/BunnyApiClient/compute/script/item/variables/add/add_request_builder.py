@@ -13,27 +13,27 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from ......models.structured_success_response import StructuredSuccessResponse
+    from ......models.compute.edge_script_variable import EdgeScriptVariable
 
-class ThumbnailRequestBuilder(BaseRequestBuilder):
+class AddRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /library/{libraryId}/videos/{videoId}/thumbnail
+    Builds and executes requests for operations under /compute/script/{id}/variables/add
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
-        Instantiates a new ThumbnailRequestBuilder and sets the default values.
+        Instantiates a new AddRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos/{videoId}/thumbnail{?thumbnailUrl*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/compute/script/{id}/variables/add", path_parameters)
     
-    async def post(self,body: bytes, request_configuration: Optional[RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]] = None) -> Optional[StructuredSuccessResponse]:
+    async def post(self,body: EdgeScriptVariable, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EdgeScriptVariable]:
         """
-        [SetThumbnail API Docs](https://docs.bunny.net/reference/video_setthumbnail)
-        param body: Binary request body
+        [AddComputeScriptVariable API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_addvariable)
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[StructuredSuccessResponse]
+        Returns: Optional[EdgeScriptVariable]
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -42,14 +42,14 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.structured_success_response import StructuredSuccessResponse
+        from ......models.compute.edge_script_variable import EdgeScriptVariable
 
-        return await self.request_adapter.send_async(request_info, StructuredSuccessResponse, None)
+        return await self.request_adapter.send_async(request_info, EdgeScriptVariable, None)
     
-    def to_post_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: EdgeScriptVariable, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        [SetThumbnail API Docs](https://docs.bunny.net/reference/video_setthumbnail)
-        param body: Binary request body
+        [AddComputeScriptVariable API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_addvariable)
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -58,41 +58,21 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
-        request_info.set_stream_content(body, "image/*")
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: str) -> ThumbnailRequestBuilder:
+    def with_url(self,raw_url: str) -> AddRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: ThumbnailRequestBuilder
+        Returns: AddRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ThumbnailRequestBuilder(self.request_adapter, raw_url)
+        return AddRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class ThumbnailRequestBuilderPostQueryParameters():
-        """
-        [SetThumbnail API Docs](https://docs.bunny.net/reference/video_setthumbnail)
-        """
-        def get_query_parameter(self,original_name: str) -> str:
-            """
-            Maps the query parameters names to their encoded names for the URI template parsing.
-            param original_name: The original query parameter name in the class.
-            Returns: str
-            """
-            if not original_name:
-                raise TypeError("original_name cannot be null.")
-            if original_name == "thumbnail_url":
-                return "thumbnailUrl"
-            return original_name
-        
-        thumbnail_url: Optional[str] = None
-
-    
-    @dataclass
-    class ThumbnailRequestBuilderPostRequestConfiguration(RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]):
+    class AddRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

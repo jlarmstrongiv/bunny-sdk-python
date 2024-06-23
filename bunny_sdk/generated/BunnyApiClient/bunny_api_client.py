@@ -14,8 +14,11 @@ from kiota_serialization_text.text_serialization_writer_factory import TextSeria
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .abusecase.abusecase_request_builder import AbusecaseRequestBuilder
     from .apikey.apikey_request_builder import ApikeyRequestBuilder
+    from .compute.compute_request_builder import ComputeRequestBuilder
     from .country.country_request_builder import CountryRequestBuilder
+    from .dmca.dmca_request_builder import DmcaRequestBuilder
     from .dnszone.dnszone_request_builder import DnszoneRequestBuilder
     from .pullzone.pullzone_request_builder import PullzoneRequestBuilder
     from .purge.purge_request_builder import PurgeRequestBuilder
@@ -49,6 +52,15 @@ class BunnyApiClient(BaseRequestBuilder):
         self.path_parameters["base_url"] = self.request_adapter.base_url
     
     @property
+    def abusecase(self) -> AbusecaseRequestBuilder:
+        """
+        The abusecase property
+        """
+        from .abusecase.abusecase_request_builder import AbusecaseRequestBuilder
+
+        return AbusecaseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def apikey(self) -> ApikeyRequestBuilder:
         """
         The apikey property
@@ -58,6 +70,15 @@ class BunnyApiClient(BaseRequestBuilder):
         return ApikeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def compute(self) -> ComputeRequestBuilder:
+        """
+        The compute property
+        """
+        from .compute.compute_request_builder import ComputeRequestBuilder
+
+        return ComputeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def country(self) -> CountryRequestBuilder:
         """
         The country property
@@ -65,6 +86,15 @@ class BunnyApiClient(BaseRequestBuilder):
         from .country.country_request_builder import CountryRequestBuilder
 
         return CountryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def dmca(self) -> DmcaRequestBuilder:
+        """
+        The dmca property
+        """
+        from .dmca.dmca_request_builder import DmcaRequestBuilder
+
+        return DmcaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def dnszone(self) -> DnszoneRequestBuilder:

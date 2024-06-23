@@ -13,68 +13,76 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from ......models.structured_success_response import StructuredSuccessResponse
+    from .abusecase_get_response import AbusecaseGetResponse
+    from .item.abusecase_item_request_builder import AbusecaseItemRequestBuilder
 
-class ThumbnailRequestBuilder(BaseRequestBuilder):
+class AbusecaseRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /library/{libraryId}/videos/{videoId}/thumbnail
+    Builds and executes requests for operations under /abusecase
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
-        Instantiates a new ThumbnailRequestBuilder and sets the default values.
+        Instantiates a new AbusecaseRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos/{videoId}/thumbnail{?thumbnailUrl*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/abusecase?page={page}&perPage={perPage}", path_parameters)
     
-    async def post(self,body: bytes, request_configuration: Optional[RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]] = None) -> Optional[StructuredSuccessResponse]:
+    def by_id(self,id: int) -> AbusecaseItemRequestBuilder:
         """
-        [SetThumbnail API Docs](https://docs.bunny.net/reference/video_setthumbnail)
-        param body: Binary request body
+        Gets an item from the BunnyApiClient.abusecase.item collection
+        param id: Unique identifier of the item
+        Returns: AbusecaseItemRequestBuilder
+        """
+        if not id:
+            raise TypeError("id cannot be null.")
+        from .item.abusecase_item_request_builder import AbusecaseItemRequestBuilder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["id"] = id
+        return AbusecaseItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    async def get(self,request_configuration: Optional[RequestConfiguration[AbusecaseRequestBuilderGetQueryParameters]] = None) -> Optional[AbusecaseGetResponse]:
+        """
+        [ListAbuseCases API Docs](https://docs.bunny.net/reference/abusecasepublic_index)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[StructuredSuccessResponse]
+        Returns: Optional[AbusecaseGetResponse]
         """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = self.to_post_request_information(
-            body, request_configuration
+        request_info = self.to_get_request_information(
+            request_configuration
         )
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.structured_success_response import StructuredSuccessResponse
+        from .abusecase_get_response import AbusecaseGetResponse
 
-        return await self.request_adapter.send_async(request_info, StructuredSuccessResponse, None)
+        return await self.request_adapter.send_async(request_info, AbusecaseGetResponse, None)
     
-    def to_post_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AbusecaseRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        [SetThumbnail API Docs](https://docs.bunny.net/reference/video_setthumbnail)
-        param body: Binary request body
+        [ListAbuseCases API Docs](https://docs.bunny.net/reference/abusecasepublic_index)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
-        request_info.set_stream_content(body, "image/*")
         return request_info
     
-    def with_url(self,raw_url: str) -> ThumbnailRequestBuilder:
+    def with_url(self,raw_url: str) -> AbusecaseRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: ThumbnailRequestBuilder
+        Returns: AbusecaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ThumbnailRequestBuilder(self.request_adapter, raw_url)
+        return AbusecaseRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class ThumbnailRequestBuilderPostQueryParameters():
+    class AbusecaseRequestBuilderGetQueryParameters():
         """
-        [SetThumbnail API Docs](https://docs.bunny.net/reference/video_setthumbnail)
+        [ListAbuseCases API Docs](https://docs.bunny.net/reference/abusecasepublic_index)
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -84,15 +92,19 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
-            if original_name == "thumbnail_url":
-                return "thumbnailUrl"
+            if original_name == "per_page":
+                return "perPage"
+            if original_name == "page":
+                return "page"
             return original_name
         
-        thumbnail_url: Optional[str] = None
+        page: Optional[int] = None
+
+        per_page: Optional[int] = None
 
     
     @dataclass
-    class ThumbnailRequestBuilderPostRequestConfiguration(RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]):
+    class AbusecaseRequestBuilderGetRequestConfiguration(RequestConfiguration[AbusecaseRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
