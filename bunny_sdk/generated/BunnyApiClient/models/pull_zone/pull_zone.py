@@ -154,7 +154,7 @@ class PullZone(AdditionalDataHolder, Parsable):
     # The amount of data after the rate limit will be activated
     limit_rate_after: Optional[float] = None
     # The maximum rate at which the zone will transfer data in kb/s. 0 for unlimited
-    limit_rate_per_second: Optional[int] = None
+    limit_rate_per_second: Optional[float] = None
     # The LogAnonymizationType property
     log_anonymization_type: Optional[float] = None
     # The LogFormat property
@@ -420,7 +420,7 @@ class PullZone(AdditionalDataHolder, Parsable):
             "Id": lambda n : setattr(self, 'id', n.get_int_value()),
             "IgnoreQueryStrings": lambda n : setattr(self, 'ignore_query_strings', n.get_bool_value()),
             "LimitRateAfter": lambda n : setattr(self, 'limit_rate_after', n.get_float_value()),
-            "LimitRatePerSecond": lambda n : setattr(self, 'limit_rate_per_second', n.get_int_value()),
+            "LimitRatePerSecond": lambda n : setattr(self, 'limit_rate_per_second', n.get_float_value()),
             "LogAnonymizationType": lambda n : setattr(self, 'log_anonymization_type', n.get_float_value()),
             "LogFormat": lambda n : setattr(self, 'log_format', n.get_float_value()),
             "LogForwardingEnabled": lambda n : setattr(self, 'log_forwarding_enabled', n.get_bool_value()),
@@ -573,7 +573,7 @@ class PullZone(AdditionalDataHolder, Parsable):
         writer.write_bool_value("FollowRedirects", self.follow_redirects)
         writer.write_bool_value("IgnoreQueryStrings", self.ignore_query_strings)
         writer.write_float_value("LimitRateAfter", self.limit_rate_after)
-        writer.write_int_value("LimitRatePerSecond", self.limit_rate_per_second)
+        writer.write_float_value("LimitRatePerSecond", self.limit_rate_per_second)
         writer.write_float_value("LogAnonymizationType", self.log_anonymization_type)
         writer.write_float_value("LogFormat", self.log_format)
         writer.write_bool_value("LogForwardingEnabled", self.log_forwarding_enabled)

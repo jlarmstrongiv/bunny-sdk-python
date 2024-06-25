@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from .region.region_request_builder import RegionRequestBuilder
     from .statistics.statistics_request_builder import StatisticsRequestBuilder
     from .storagezone.storagezone_request_builder import StoragezoneRequestBuilder
+    from .user.user_request_builder import UserRequestBuilder
     from .videolibrary.videolibrary_request_builder import VideolibraryRequestBuilder
 
 class BunnyApiClient(BaseRequestBuilder):
@@ -149,6 +150,15 @@ class BunnyApiClient(BaseRequestBuilder):
         from .storagezone.storagezone_request_builder import StoragezoneRequestBuilder
 
         return StoragezoneRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user(self) -> UserRequestBuilder:
+        """
+        The user property
+        """
+        from .user.user_request_builder import UserRequestBuilder
+
+        return UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def videolibrary(self) -> VideolibraryRequestBuilder:

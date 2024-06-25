@@ -31,7 +31,7 @@ class StorageZone(AdditionalDataHolder, Parsable):
     # The Password property
     password: Optional[str] = None
     # The PriceOverride property
-    price_override: Optional[int] = None
+    price_override: Optional[float] = None
     # The PullZones property
     pull_zones: Optional[List[PullZone]] = None
     # The ReadOnlyPassword property
@@ -86,7 +86,7 @@ class StorageZone(AdditionalDataHolder, Parsable):
             "Id": lambda n : setattr(self, 'id', n.get_int_value()),
             "Name": lambda n : setattr(self, 'name', n.get_str_value()),
             "Password": lambda n : setattr(self, 'password', n.get_str_value()),
-            "PriceOverride": lambda n : setattr(self, 'price_override', n.get_int_value()),
+            "PriceOverride": lambda n : setattr(self, 'price_override', n.get_float_value()),
             "PullZones": lambda n : setattr(self, 'pull_zones', n.get_collection_of_object_values(PullZone)),
             "ReadOnlyPassword": lambda n : setattr(self, 'read_only_password', n.get_str_value()),
             "Region": lambda n : setattr(self, 'region', n.get_enum_value(StandardRegions)),

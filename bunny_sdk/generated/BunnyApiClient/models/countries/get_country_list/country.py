@@ -21,7 +21,7 @@ class Country(AdditionalDataHolder, Parsable):
     # The TaxPrefix property
     tax_prefix: Optional[str] = None
     # The TaxRate property
-    tax_rate: Optional[int] = None
+    tax_rate: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Country:
@@ -46,7 +46,7 @@ class Country(AdditionalDataHolder, Parsable):
             "Name": lambda n : setattr(self, 'name', n.get_str_value()),
             "PopList": lambda n : setattr(self, 'pop_list', n.get_collection_of_primitive_values(str)),
             "TaxPrefix": lambda n : setattr(self, 'tax_prefix', n.get_str_value()),
-            "TaxRate": lambda n : setattr(self, 'tax_rate', n.get_int_value()),
+            "TaxRate": lambda n : setattr(self, 'tax_rate', n.get_float_value()),
         }
         return fields
     
@@ -64,7 +64,7 @@ class Country(AdditionalDataHolder, Parsable):
         writer.write_str_value("Name", self.name)
         writer.write_collection_of_primitive_values("PopList", self.pop_list)
         writer.write_str_value("TaxPrefix", self.tax_prefix)
-        writer.write_int_value("TaxRate", self.tax_rate)
+        writer.write_float_value("TaxRate", self.tax_rate)
         writer.write_additional_data_value(self.additional_data)
     
 
