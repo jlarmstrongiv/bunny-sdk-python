@@ -5,10 +5,10 @@ from kiota_abstractions.authentication.api_key_authentication_provider import (
 from kiota_http.httpx_request_adapter import HttpxRequestAdapter
 
 
-from .generated.BunnyApiClient.bunny_api_client import BunnyApiClient
-from .generated.EdgeStorageApiClient.edge_storage_api_client import EdgeStorageApiClient
-from .generated.StreamApiClient.stream_api_client import StreamApiClient
-from .generated.LoggingApiClient.logging_api_client import LoggingApiClient
+from .bunnyApiClient.bunny_api_client import BunnyApiClient
+from .edgeStorageApiClient.edge_storage_api_client import EdgeStorageApiClient
+from .streamApiClient.stream_api_client import StreamApiClient
+from .loggingApiClient.logging_api_client import LoggingApiClient
 
 
 def createBunnyApiClient(access_key: str) -> BunnyApiClient:

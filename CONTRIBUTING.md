@@ -7,6 +7,13 @@
 - `pipx install poetry==1.8.2`
 - `poetry config pypi-token.pypi ***`
 
+- VS Code extensions
+  - `tamasfe.even-better-toml`
+  - `ms-python.python`
+  - `ms-python.vscode-pylance`
+  - `ms-python.debugpy`
+  - `charliermarsh.ruff`
+
 ## Updating
 
 - `poetry install`
