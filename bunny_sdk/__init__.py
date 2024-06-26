@@ -21,12 +21,15 @@ def create_bunny_api_client(access_key: str) -> BunnyApiClient:
     return BunnyApiClient(request_adapter)
 
 
-def create_edge_storage_api_client(access_key: str) -> EdgeStorageApiClient:
+def create_edge_storage_api_client(
+    access_key: str, base_url: str
+) -> EdgeStorageApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
         key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
 
     request_adapter = HttpxRequestAdapter(authentication_provider)
+    request_adapter.base_url = base_url
 
     return EdgeStorageApiClient(request_adapter)
 
