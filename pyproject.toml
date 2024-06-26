@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bunny-sdk"
-version = "0.0.9"
+version = "0.0.10"
 description = "Python SDK for bunny.net 🐰"
 authors = ["John L. Armstrong IV"]
 license = "AGPL-3.0-only"

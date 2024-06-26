@@ -11,44 +11,54 @@ from .stream_api_client.stream_api_client import StreamApiClient
 from .logging_api_client.logging_api_client import LoggingApiClient
 
 
-def create_bunny_api_client(access_key: str) -> BunnyApiClient:
-    authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
-    )
+class BunnySdk:
+    @staticmethod
+    def create_bunny_api_client(access_key: str) -> BunnyApiClient:
+        authentication_provider = ApiKeyAuthenticationProvider(
+            key_location=KeyLocation.Header,
+            api_key=access_key,
+            parameter_name="AccessKey",
+        )
 
-    request_adapter = HttpxRequestAdapter(authentication_provider)
+        request_adapter = HttpxRequestAdapter(authentication_provider)
 
-    return BunnyApiClient(request_adapter)
+        return BunnyApiClient(request_adapter)
 
+    @staticmethod
+    def create_edge_storage_api_client(
+        access_key: str, base_url: str
+    ) -> EdgeStorageApiClient:
+        authentication_provider = ApiKeyAuthenticationProvider(
+            key_location=KeyLocation.Header,
+            api_key=access_key,
+            parameter_name="AccessKey",
+        )
 
-def create_edge_storage_api_client(
-    access_key: str, base_url: str
-) -> EdgeStorageApiClient:
-    authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
-    )
+        request_adapter = HttpxRequestAdapter(authentication_provider)
+        request_adapter.base_url = base_url
 
-    request_adapter = HttpxRequestAdapter(authentication_provider)
-    request_adapter.base_url = base_url
+        return EdgeStorageApiClient(request_adapter)
 
-    return EdgeStorageApiClient(request_adapter)
+    @staticmethod
+    def create_stream_api_client(access_key: str) -> StreamApiClient:
+        authentication_provider = ApiKeyAuthenticationProvider(
+            key_location=KeyLocation.Header,
+            api_key=access_key,
+            parameter_name="AccessKey",
+        )
 
+        request_adapter = HttpxRequestAdapter(authentication_provider)
 
-def create_stream_api_client(access_key: str) -> StreamApiClient:
-    authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
-    )
+        return StreamApiClient(request_adapter)
 
-    request_adapter = HttpxRequestAdapter(authentication_provider)
+    @staticmethod
+    def create_logging_api_client(access_key: str) -> LoggingApiClient:
+        authentication_provider = ApiKeyAuthenticationProvider(
+            key_location=KeyLocation.Header,
+            api_key=access_key,
+            parameter_name="AccessKey",
+        )
 
-    return StreamApiClient(request_adapter)
+        request_adapter = HttpxRequestAdapter(authentication_provider)
 
-
-def create_logging_api_client(access_key: str) -> LoggingApiClient:
-    authentication_provider = ApiKeyAuthenticationProvider(
-        key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
-    )
-
-    request_adapter = HttpxRequestAdapter(authentication_provider)
-
-    return LoggingApiClient(request_adapter)
+        return LoggingApiClient(request_adapter)
