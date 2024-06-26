@@ -5,13 +5,13 @@ from kiota_abstractions.authentication.api_key_authentication_provider import (
 from kiota_http.httpx_request_adapter import HttpxRequestAdapter
 
 
-from .bunnyApiClient.bunny_api_client import BunnyApiClient
-from .edgeStorageApiClient.edge_storage_api_client import EdgeStorageApiClient
-from .streamApiClient.stream_api_client import StreamApiClient
-from .loggingApiClient.logging_api_client import LoggingApiClient
+from .bunny_api_client.bunny_api_client import BunnyApiClient
+from .edge_storage_api_client.edge_storage_api_client import EdgeStorageApiClient
+from .stream_api_client.stream_api_client import StreamApiClient
+from .logging_api_client.logging_api_client import LoggingApiClient
 
 
-def createBunnyApiClient(access_key: str) -> BunnyApiClient:
+def create_bunny_api_client(access_key: str) -> BunnyApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
         key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
@@ -21,7 +21,7 @@ def createBunnyApiClient(access_key: str) -> BunnyApiClient:
     return BunnyApiClient(request_adapter)
 
 
-def createEdgeStorageApiClient(access_key: str) -> EdgeStorageApiClient:
+def create_edge_storage_api_client(access_key: str) -> EdgeStorageApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
         key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
@@ -31,7 +31,7 @@ def createEdgeStorageApiClient(access_key: str) -> EdgeStorageApiClient:
     return EdgeStorageApiClient(request_adapter)
 
 
-def createStreamApiClient(access_key: str) -> StreamApiClient:
+def create_stream_api_client(access_key: str) -> StreamApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
         key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
@@ -41,7 +41,7 @@ def createStreamApiClient(access_key: str) -> StreamApiClient:
     return StreamApiClient(request_adapter)
 
 
-def createLoggingApiClient(access_key: str) -> LoggingApiClient:
+def create_logging_api_client(access_key: str) -> LoggingApiClient:
     authentication_provider = ApiKeyAuthenticationProvider(
         key_location=KeyLocation.Header, api_key=access_key, parameter_name="AccessKey"
     )
