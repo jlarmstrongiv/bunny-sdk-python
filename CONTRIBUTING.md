@@ -16,7 +16,7 @@
 
 ## Updating
 
-- `poetry update`
+- Update dependencies `poetry update`
 - `poetry lock`
 - `poetry install`
 - `source .venv/bin/activate`
