@@ -16,7 +16,7 @@
 
 ## Updating
 
-- Update dependencies `poetry update`
+- Update dependencies `poetry update` and manually update `pyproject.toml`
 - `poetry lock`
 - `poetry install`
 - `source .venv/bin/activate`
