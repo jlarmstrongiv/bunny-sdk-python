@@ -16,6 +16,8 @@
 
 ## Updating
 
+- `poetry update`
+- `poetry lock`
 - `poetry install`
 - `source .venv/bin/activate`
 - `pip install -e .`
