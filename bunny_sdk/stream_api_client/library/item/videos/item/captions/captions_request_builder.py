@@ -26,7 +26,7 @@ class CaptionsRequestBuilder(BaseRequestBuilder):
         param srclang_path_parameter: srclang specified as a path parameter
         Returns: WithSrclangPathParameterItemRequestBuilder
         """
-        if not srclang_path_parameter:
+        if srclang_path_parameter is None:
             raise TypeError("srclang_path_parameter cannot be null.")
         from .item.with_srclang_path_parameter_item_request_builder import WithSrclangPathParameterItemRequestBuilder
 

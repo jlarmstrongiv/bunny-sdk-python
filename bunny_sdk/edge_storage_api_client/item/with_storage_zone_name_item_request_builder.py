@@ -26,7 +26,7 @@ class WithStorageZoneNameItemRequestBuilder(BaseRequestBuilder):
         param path: The directory path that you want to list.
         Returns: WithPathItemRequestBuilder
         """
-        if not path:
+        if path is None:
             raise TypeError("path cannot be null.")
         from .item.with_path_item_request_builder import WithPathItemRequestBuilder
 

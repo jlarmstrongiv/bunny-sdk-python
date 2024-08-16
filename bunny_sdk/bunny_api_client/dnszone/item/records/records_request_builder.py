@@ -37,7 +37,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
         param id: The ID of the DNS record that will be updated.
         Returns: RecordsItemRequestBuilder
         """
-        if not id:
+        if id is None:
             raise TypeError("id cannot be null.")
         from .item.records_item_request_builder import RecordsItemRequestBuilder
 
@@ -52,7 +52,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DnsRecord]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_put_request_information(
             body, request_configuration
@@ -75,7 +75,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -89,7 +89,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RecordsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RecordsRequestBuilder(self.request_adapter, raw_url)
     

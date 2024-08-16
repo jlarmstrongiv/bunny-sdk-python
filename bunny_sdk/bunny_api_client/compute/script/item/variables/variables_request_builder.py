@@ -27,7 +27,7 @@ class VariablesRequestBuilder(BaseRequestBuilder):
         param variable_id: The ID of the Environment Variable that will be updated
         Returns: WithVariableItemRequestBuilder
         """
-        if not variable_id:
+        if variable_id is None:
             raise TypeError("variable_id cannot be null.")
         from .item.with_variable_item_request_builder import WithVariableItemRequestBuilder
 

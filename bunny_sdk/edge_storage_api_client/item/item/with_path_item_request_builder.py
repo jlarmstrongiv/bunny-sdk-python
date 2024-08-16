@@ -35,7 +35,7 @@ class WithPathItemRequestBuilder(BaseRequestBuilder):
         param file_name: The name of the file that you wish to download.
         Returns: WithFileNameItemRequestBuilder
         """
-        if not file_name:
+        if file_name is None:
             raise TypeError("file_name cannot be null.")
         from .item.with_file_name_item_request_builder import WithFileNameItemRequestBuilder
 
@@ -75,7 +75,7 @@ class WithPathItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: WithPathItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return WithPathItemRequestBuilder(self.request_adapter, raw_url)
     

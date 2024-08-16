@@ -35,7 +35,7 @@ class AbusecaseRequestBuilder(BaseRequestBuilder):
         param id: Unique identifier of the item
         Returns: AbusecaseItemRequestBuilder
         """
-        if not id:
+        if id is None:
             raise TypeError("id cannot be null.")
         from .item.abusecase_item_request_builder import AbusecaseItemRequestBuilder
 
@@ -75,7 +75,7 @@ class AbusecaseRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AbusecaseRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AbusecaseRequestBuilder(self.request_adapter, raw_url)
     
@@ -90,7 +90,7 @@ class AbusecaseRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "per_page":
                 return "perPage"

@@ -29,7 +29,7 @@ class CollectionsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/collections?includeThumbnails={includeThumbnails}&itemsPerPage={itemsPerPage}&orderBy={orderBy}&page={page}{&search*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/collections?includeThumbnails={includeThumbnails}&itemsPerPage={itemsPerPage}&orderBy={orderBy}&page={page}{&search}", path_parameters)
     
     def by_collection_id(self,collection_id: str) -> WithCollectionItemRequestBuilder:
         """
@@ -37,7 +37,7 @@ class CollectionsRequestBuilder(BaseRequestBuilder):
         param collection_id: Unique identifier of the item
         Returns: WithCollectionItemRequestBuilder
         """
-        if not collection_id:
+        if collection_id is None:
             raise TypeError("collection_id cannot be null.")
         from .item.with_collection_item_request_builder import WithCollectionItemRequestBuilder
 
@@ -67,7 +67,7 @@ class CollectionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Collection]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -96,7 +96,7 @@ class CollectionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, '{+baseurl}/library/{libraryId}/collections', self.path_parameters)
         request_info.configure(request_configuration)
@@ -110,7 +110,7 @@ class CollectionsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CollectionsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CollectionsRequestBuilder(self.request_adapter, raw_url)
     
@@ -125,7 +125,7 @@ class CollectionsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "include_thumbnails":
                 return "includeThumbnails"

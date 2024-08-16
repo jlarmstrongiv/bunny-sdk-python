@@ -26,7 +26,7 @@ class PlayRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos/{videoId}/play{?expires*,token*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos/{videoId}/play{?expires,token}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlayRequestBuilderGetQueryParameters]] = None) -> Optional[VideoPlayData]:
         """
@@ -60,7 +60,7 @@ class PlayRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PlayRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PlayRequestBuilder(self.request_adapter, raw_url)
     

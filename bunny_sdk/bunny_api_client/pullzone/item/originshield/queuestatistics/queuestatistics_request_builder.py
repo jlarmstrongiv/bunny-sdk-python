@@ -26,7 +26,7 @@ class QueuestatisticsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/pullzone/{%2Did}/originshield/queuestatistics{?dateFrom*,dateTo*,hourly*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/pullzone/{%2Did}/originshield/queuestatistics{?dateFrom,dateTo,hourly}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueuestatisticsRequestBuilderGetQueryParameters]] = None) -> Optional[QueuestatisticsGetResponse]:
         """
@@ -60,7 +60,7 @@ class QueuestatisticsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: QueuestatisticsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return QueuestatisticsRequestBuilder(self.request_adapter, raw_url)
     
@@ -79,7 +79,7 @@ class QueuestatisticsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "date_from":
                 return "dateFrom"

@@ -26,7 +26,7 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos/{videoId}/thumbnail{?thumbnailUrl*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos/{videoId}/thumbnail{?thumbnailUrl}", path_parameters)
     
     async def post(self,body: bytes, request_configuration: Optional[RequestConfiguration[ThumbnailRequestBuilderPostQueryParameters]] = None) -> Optional[StructuredSuccessResponse]:
         """
@@ -35,7 +35,7 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StructuredSuccessResponse]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -53,7 +53,7 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -67,7 +67,7 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ThumbnailRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ThumbnailRequestBuilder(self.request_adapter, raw_url)
     
@@ -82,7 +82,7 @@ class ThumbnailRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "thumbnail_url":
                 return "thumbnailUrl"

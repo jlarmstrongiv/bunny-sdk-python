@@ -33,7 +33,7 @@ class WithMmWithDdWithYyRequestBuilder(BaseRequestBuilder):
         param pull_zone_id: The path parameter: pullZoneId
         Returns: WithPullZoneIdLogRequestBuilder
         """
-        if not pull_zone_id:
+        if pull_zone_id is None:
             raise TypeError("pull_zone_id cannot be null.")
         from .with_pull_zone_id_log.with_pull_zone_id_log_request_builder import WithPullZoneIdLogRequestBuilder
 

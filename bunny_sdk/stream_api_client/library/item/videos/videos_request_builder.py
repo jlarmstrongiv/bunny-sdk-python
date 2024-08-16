@@ -31,7 +31,7 @@ class VideosRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos?itemsPerPage={itemsPerPage}&orderBy={orderBy}&page={page}{&collection*,search*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/library/{libraryId}/videos?itemsPerPage={itemsPerPage}&orderBy={orderBy}&page={page}{&collection,search}", path_parameters)
     
     def by_video_id(self,video_id: str) -> WithVideoItemRequestBuilder:
         """
@@ -39,7 +39,7 @@ class VideosRequestBuilder(BaseRequestBuilder):
         param video_id: Unique identifier of the item
         Returns: WithVideoItemRequestBuilder
         """
-        if not video_id:
+        if video_id is None:
             raise TypeError("video_id cannot be null.")
         from .item.with_video_item_request_builder import WithVideoItemRequestBuilder
 
@@ -69,7 +69,7 @@ class VideosRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Video]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -98,7 +98,7 @@ class VideosRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, '{+baseurl}/library/{libraryId}/videos', self.path_parameters)
         request_info.configure(request_configuration)
@@ -112,7 +112,7 @@ class VideosRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: VideosRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return VideosRequestBuilder(self.request_adapter, raw_url)
     
@@ -136,7 +136,7 @@ class VideosRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "items_per_page":
                 return "itemsPerPage"

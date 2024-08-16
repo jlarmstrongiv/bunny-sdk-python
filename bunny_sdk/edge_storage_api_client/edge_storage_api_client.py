@@ -26,7 +26,7 @@ class EdgeStorageApiClient(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        if not request_adapter:
+        if request_adapter is None:
             raise TypeError("request_adapter cannot be null.")
         super().__init__(request_adapter, "{+baseurl}", None)
         register_default_serializer(JsonSerializationWriterFactory)
@@ -46,7 +46,7 @@ class EdgeStorageApiClient(BaseRequestBuilder):
         param storage_zone_name: the name of your storage zone where you are connecting to.
         Returns: WithStorageZoneNameItemRequestBuilder
         """
-        if not storage_zone_name:
+        if storage_zone_name is None:
             raise TypeError("storage_zone_name cannot be null.")
         from .item.with_storage_zone_name_item_request_builder import WithStorageZoneNameItemRequestBuilder
 

@@ -27,7 +27,7 @@ class EdgerulesRequestBuilder(BaseRequestBuilder):
         param edge_rule_id: The ID of the Edge Rule that should be deleted
         Returns: WithEdgeRuleItemRequestBuilder
         """
-        if not edge_rule_id:
+        if edge_rule_id is None:
             raise TypeError("edge_rule_id cannot be null.")
         from .item.with_edge_rule_item_request_builder import WithEdgeRuleItemRequestBuilder
 

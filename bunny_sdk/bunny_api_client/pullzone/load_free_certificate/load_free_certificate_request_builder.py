@@ -54,7 +54,7 @@ class LoadFreeCertificateRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: LoadFreeCertificateRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return LoadFreeCertificateRequestBuilder(self.request_adapter, raw_url)
     

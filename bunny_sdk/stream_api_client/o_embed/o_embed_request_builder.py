@@ -26,7 +26,7 @@ class OEmbedRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/OEmbed?expires={expires}{&maxHeight*,maxWidth*,token*,url*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/OEmbed?expires={expires}{&maxHeight,maxWidth,token,url}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OEmbedRequestBuilderGetQueryParameters]] = None) -> Optional[OEmbedGetResponse]:
         """
@@ -60,7 +60,7 @@ class OEmbedRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: OEmbedRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return OEmbedRequestBuilder(self.request_adapter, raw_url)
     
@@ -75,7 +75,7 @@ class OEmbedRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "max_height":
                 return "maxHeight"

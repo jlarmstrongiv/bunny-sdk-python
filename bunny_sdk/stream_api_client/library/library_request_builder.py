@@ -26,7 +26,7 @@ class LibraryRequestBuilder(BaseRequestBuilder):
         param library_id: Unique identifier of the item
         Returns: WithLibraryItemRequestBuilder
         """
-        if not library_id:
+        if library_id is None:
             raise TypeError("library_id cannot be null.")
         from .item.with_library_item_request_builder import WithLibraryItemRequestBuilder
 

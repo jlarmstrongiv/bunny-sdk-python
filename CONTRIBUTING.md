@@ -21,6 +21,7 @@
 - `poetry install`
 - `source .venv/bin/activate`
 - `pip install -e .`
+- `BUNNY_ACCESS_KEY="***" poetry run python3 tests/main.py`
 - `poetry version patch`
 - `poetry build`
 - `git add -A`

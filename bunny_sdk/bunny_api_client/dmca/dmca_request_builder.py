@@ -26,7 +26,7 @@ class DmcaRequestBuilder(BaseRequestBuilder):
         param id: Unique identifier of the item
         Returns: DmcaItemRequestBuilder
         """
-        if not id:
+        if id is None:
             raise TypeError("id cannot be null.")
         from .item.dmca_item_request_builder import DmcaItemRequestBuilder
 

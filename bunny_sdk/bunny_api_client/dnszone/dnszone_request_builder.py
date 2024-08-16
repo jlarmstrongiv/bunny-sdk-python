@@ -39,7 +39,7 @@ class DnszoneRequestBuilder(BaseRequestBuilder):
         param id: The ID of the DNS Zone that will be returned
         Returns: ItemRequestBuilder
         """
-        if not id:
+        if id is None:
             raise TypeError("id cannot be null.")
         from .item.item_request_builder import ItemRequestBuilder
 
@@ -69,7 +69,7 @@ class DnszoneRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DnsZone]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -103,7 +103,7 @@ class DnszoneRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, '{+baseurl}/dnszone', self.path_parameters)
         request_info.configure(request_configuration)
@@ -117,7 +117,7 @@ class DnszoneRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DnszoneRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DnszoneRequestBuilder(self.request_adapter, raw_url)
     
@@ -141,7 +141,7 @@ class DnszoneRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "per_page":
                 return "perPage"

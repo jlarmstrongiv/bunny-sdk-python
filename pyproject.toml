@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bunny-sdk"
-version = "0.0.12"
+version = "0.0.13"
 description = "Python SDK for bunny.net 🐰"
 authors = ["John L. Armstrong IV"]
 license = "AGPL-3.0-only"
@@ -16,8 +16,8 @@ keywords = [
 ]
 
 [tool.poetry.urls]
-Homepage = "https://bunny-launcher.com/bunny-sdk/languages/python/"
-Documentation = "https://bunny-launcher.com/bunny-sdk/languages/python/"
+Homepage = "https://bunny-launcher.net/bunny-sdk/languages/python/"
+Documentation = "https://bunny-launcher.net/bunny-sdk/languages/python/"
 Repository = "https://github.com/jlarmstrongiv/bunny-sdk-python.git"
 Issues = "https://github.com/jlarmstrongiv/bunny-sdk-python/issues"
 Changelog = "https://github.com/jlarmstrongiv/bunny-sdk-python/commits/main/"
@@ -25,8 +25,8 @@ Changelog = "https://github.com/jlarmstrongiv/bunny-sdk-python/commits/main/"
 [tool.poetry.dependencies]
 python = "^3.8"
 microsoft-kiota-abstractions = "^1.3.3"
-microsoft-kiota-http = "^1.3.2"
-microsoft-kiota-serialization-json = "^1.2.0"
+microsoft-kiota-http = "^1.3.3"
+microsoft-kiota-serialization-json = "^1.3.0"
 microsoft-kiota-serialization-text = "^1.0.0"
 microsoft-kiota-serialization-form = "^0.1.0"
 microsoft-kiota-serialization-multipart = "^0.1.0"

@@ -26,7 +26,7 @@ class LoggingApiClient(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        if not request_adapter:
+        if request_adapter is None:
             raise TypeError("request_adapter cannot be null.")
         super().__init__(request_adapter, "{+baseurl}", None)
         register_default_serializer(JsonSerializationWriterFactory)
@@ -48,11 +48,11 @@ class LoggingApiClient(BaseRequestBuilder):
         param yy: The path parameter: yy
         Returns: WithMmWithDdWithYyRequestBuilder
         """
-        if not dd:
+        if dd is None:
             raise TypeError("dd cannot be null.")
-        if not mm:
+        if mm is None:
             raise TypeError("mm cannot be null.")
-        if not yy:
+        if yy is None:
             raise TypeError("yy cannot be null.")
         from .with_mm_with_dd_with_yy.with_mm_with_dd_with_yy_request_builder import WithMmWithDdWithYyRequestBuilder
 
