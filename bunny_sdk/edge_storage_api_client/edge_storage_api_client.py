@@ -43,7 +43,7 @@ class EdgeStorageApiClient(BaseRequestBuilder):
     def by_storage_zone_name(self,storage_zone_name: str) -> WithStorageZoneNameItemRequestBuilder:
         """
         Gets an item from the EdgeStorageApiClient.item collection
-        param storage_zone_name: the name of your storage zone where you are connecting to.
+        param storage_zone_name: The name of your storage zone where you are connecting to.
         Returns: WithStorageZoneNameItemRequestBuilder
         """
         if storage_zone_name is None:

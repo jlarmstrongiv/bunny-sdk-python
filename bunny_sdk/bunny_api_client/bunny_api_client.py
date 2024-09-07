@@ -16,6 +16,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .abusecase.abusecase_request_builder import AbusecaseRequestBuilder
     from .apikey.apikey_request_builder import ApikeyRequestBuilder
+    from .billing.billing_request_builder import BillingRequestBuilder
     from .compute.compute_request_builder import ComputeRequestBuilder
     from .country.country_request_builder import CountryRequestBuilder
     from .dmca.dmca_request_builder import DmcaRequestBuilder
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
     from .pullzone.pullzone_request_builder import PullzoneRequestBuilder
     from .purge.purge_request_builder import PurgeRequestBuilder
     from .region.region_request_builder import RegionRequestBuilder
+    from .search.search_request_builder import SearchRequestBuilder
     from .statistics.statistics_request_builder import StatisticsRequestBuilder
     from .storagezone.storagezone_request_builder import StoragezoneRequestBuilder
     from .user.user_request_builder import UserRequestBuilder
@@ -69,6 +71,15 @@ class BunnyApiClient(BaseRequestBuilder):
         from .apikey.apikey_request_builder import ApikeyRequestBuilder
 
         return ApikeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def billing(self) -> BillingRequestBuilder:
+        """
+        The billing property
+        """
+        from .billing.billing_request_builder import BillingRequestBuilder
+
+        return BillingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def compute(self) -> ComputeRequestBuilder:
@@ -132,6 +143,15 @@ class BunnyApiClient(BaseRequestBuilder):
         from .region.region_request_builder import RegionRequestBuilder
 
         return RegionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def search(self) -> SearchRequestBuilder:
+        """
+        The search property
+        """
+        from .search.search_request_builder import SearchRequestBuilder
+
+        return SearchRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def statistics(self) -> StatisticsRequestBuilder:

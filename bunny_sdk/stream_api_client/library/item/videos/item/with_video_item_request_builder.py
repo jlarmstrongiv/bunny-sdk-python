@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .play.play_request_builder import PlayRequestBuilder
     from .reencode.reencode_request_builder import ReencodeRequestBuilder
     from .repackage.repackage_request_builder import RepackageRequestBuilder
+    from .resolutions.resolutions_request_builder import ResolutionsRequestBuilder
     from .thumbnail.thumbnail_request_builder import ThumbnailRequestBuilder
     from .transcribe.transcribe_request_builder import TranscribeRequestBuilder
 
@@ -209,6 +210,15 @@ class WithVideoItemRequestBuilder(BaseRequestBuilder):
         from .repackage.repackage_request_builder import RepackageRequestBuilder
 
         return RepackageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resolutions(self) -> ResolutionsRequestBuilder:
+        """
+        The resolutions property
+        """
+        from .resolutions.resolutions_request_builder import ResolutionsRequestBuilder
+
+        return ResolutionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def thumbnail(self) -> ThumbnailRequestBuilder:

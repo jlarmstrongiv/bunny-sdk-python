@@ -13,6 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from .item.with_uu_item_request_builder import WithUuItemRequestBuilder
     from .publish_post_request_body import PublishPostRequestBody
 
 class PublishRequestBuilder(BaseRequestBuilder):
@@ -26,9 +27,23 @@ class PublishRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/compute/script/{id}/publish", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/compute/script/{id}/publish?uuid={uuid}", path_parameters)
     
-    async def post(self,body: PublishPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
+    def by_uuid(self,uuid: str) -> WithUuItemRequestBuilder:
+        """
+        Gets an item from the BunnyApiClient.compute.script.item.publish.item collection
+        param uuid: The UUID of the script release that will be published
+        Returns: WithUuItemRequestBuilder
+        """
+        if uuid is None:
+            raise TypeError("uuid cannot be null.")
+        from .item.with_uu_item_request_builder import WithUuItemRequestBuilder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["uuid"] = uuid
+        return WithUuItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    async def post(self,body: PublishPostRequestBody, request_configuration: Optional[RequestConfiguration[PublishRequestBuilderPostQueryParameters]] = None) -> None:
         """
         [PublishComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_publish)
         param body: The request body
@@ -44,7 +59,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, None)
     
-    def to_post_request_information(self,body: PublishPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: PublishPostRequestBody, request_configuration: Optional[RequestConfiguration[PublishRequestBuilderPostQueryParameters]] = None) -> RequestInformation:
         """
         [PublishComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_publish)
         param body: The request body
@@ -69,7 +84,16 @@ class PublishRequestBuilder(BaseRequestBuilder):
         return PublishRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class PublishRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class PublishRequestBuilderPostQueryParameters():
+        """
+        [PublishComputeScript API Docs](https://docs.bunny.net/reference/computeedgescriptpublic_publish)
+        """
+        # The UUID of the script release that will be published
+        uuid: Optional[str] = None
+
+    
+    @dataclass
+    class PublishRequestBuilderPostRequestConfiguration(RequestConfiguration[PublishRequestBuilderPostQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
