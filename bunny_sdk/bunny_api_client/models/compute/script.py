@@ -19,10 +19,14 @@ class Script(AdditionalDataHolder, Parsable):
     default_hostname: Optional[str] = None
     # The Deleted property
     deleted: Optional[bool] = None
+    # The DeploymentKey property
+    deployment_key: Optional[str] = None
     # The EdgeScriptVariables property
     edge_script_variables: Optional[List[EdgeScriptVariable]] = None
     # The Id property
     id: Optional[int] = None
+    # The IntegrationEnabled property
+    integration_enabled: Optional[bool] = None
     # The LastModified property
     last_modified: Optional[datetime.datetime] = None
     # The LinkedPullZones property
@@ -60,8 +64,10 @@ class Script(AdditionalDataHolder, Parsable):
             "CurrentReleaseId": lambda n : setattr(self, 'current_release_id', n.get_int_value()),
             "DefaultHostname": lambda n : setattr(self, 'default_hostname', n.get_str_value()),
             "Deleted": lambda n : setattr(self, 'deleted', n.get_bool_value()),
+            "DeploymentKey": lambda n : setattr(self, 'deployment_key', n.get_str_value()),
             "EdgeScriptVariables": lambda n : setattr(self, 'edge_script_variables', n.get_collection_of_object_values(EdgeScriptVariable)),
             "Id": lambda n : setattr(self, 'id', n.get_int_value()),
+            "IntegrationEnabled": lambda n : setattr(self, 'integration_enabled', n.get_bool_value()),
             "LastModified": lambda n : setattr(self, 'last_modified', n.get_datetime_value()),
             "LinkedPullZones": lambda n : setattr(self, 'linked_pull_zones', n.get_collection_of_object_values(PullZone)),
             "Name": lambda n : setattr(self, 'name', n.get_str_value()),

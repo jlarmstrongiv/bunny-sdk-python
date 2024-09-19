@@ -29,7 +29,7 @@ class ScriptRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/compute/script?page={page}&perPage={perPage}&search={search}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/compute/script?page={page}&perPage={perPage}&search={search}{&includeLinkedPullZones}", path_parameters)
     
     def by_id(self,id: int) -> ScriptItemRequestBuilder:
         """
@@ -127,6 +127,8 @@ class ScriptRequestBuilder(BaseRequestBuilder):
             """
             if original_name is None:
                 raise TypeError("original_name cannot be null.")
+            if original_name == "include_linked_pull_zones":
+                return "includeLinkedPullZones"
             if original_name == "per_page":
                 return "perPage"
             if original_name == "page":
@@ -135,6 +137,8 @@ class ScriptRequestBuilder(BaseRequestBuilder):
                 return "search"
             return original_name
         
+        include_linked_pull_zones: Optional[bool] = None
+
         page: Optional[int] = None
 
         per_page: Optional[int] = None
