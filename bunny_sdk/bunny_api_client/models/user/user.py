@@ -19,6 +19,8 @@ class User(AdditionalDataHolder, Parsable):
     billing_free_until_date: Optional[datetime.datetime] = None
     # The BillingType property
     billing_type: Optional[float] = None
+    # The CardVerified property
+    card_verified: Optional[bool] = None
     # The city of the user
     city: Optional[str] = None
     # The country name that the user is from
@@ -67,6 +69,8 @@ class User(AdditionalDataHolder, Parsable):
     suspended: Optional[bool] = None
     # The total bandwidth used by the account.
     total_bandwidth_used: Optional[int] = None
+    # The TrialBalance property
+    trial_balance: Optional[float] = None
     # The total free trial bandwidth limit for this account
     trial_bandwidth_limit: Optional[int] = None
     # Determines if the account has 2FA enabled
@@ -100,6 +104,7 @@ class User(AdditionalDataHolder, Parsable):
             "BillingEmail": lambda n : setattr(self, 'billing_email', n.get_str_value()),
             "BillingFreeUntilDate": lambda n : setattr(self, 'billing_free_until_date', n.get_datetime_value()),
             "BillingType": lambda n : setattr(self, 'billing_type', n.get_float_value()),
+            "CardVerified": lambda n : setattr(self, 'card_verified', n.get_bool_value()),
             "City": lambda n : setattr(self, 'city', n.get_str_value()),
             "CompanyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "Country": lambda n : setattr(self, 'country', n.get_str_value()),
@@ -124,6 +129,7 @@ class User(AdditionalDataHolder, Parsable):
             "StreetAddress": lambda n : setattr(self, 'street_address', n.get_str_value()),
             "Suspended": lambda n : setattr(self, 'suspended', n.get_bool_value()),
             "TotalBandwidthUsed": lambda n : setattr(self, 'total_bandwidth_used', n.get_int_value()),
+            "TrialBalance": lambda n : setattr(self, 'trial_balance', n.get_float_value()),
             "TrialBandwidthLimit": lambda n : setattr(self, 'trial_bandwidth_limit', n.get_int_value()),
             "TwoFactorAuthenticationEnabled": lambda n : setattr(self, 'two_factor_authentication_enabled', n.get_bool_value()),
             "UnreadSupportTicketCount": lambda n : setattr(self, 'unread_support_ticket_count', n.get_int_value()),
@@ -145,6 +151,7 @@ class User(AdditionalDataHolder, Parsable):
         writer.write_str_value("BillingEmail", self.billing_email)
         writer.write_datetime_value("BillingFreeUntilDate", self.billing_free_until_date)
         writer.write_float_value("BillingType", self.billing_type)
+        writer.write_bool_value("CardVerified", self.card_verified)
         writer.write_str_value("City", self.city)
         writer.write_str_value("CompanyName", self.company_name)
         writer.write_str_value("Country", self.country)
@@ -169,6 +176,7 @@ class User(AdditionalDataHolder, Parsable):
         writer.write_str_value("StreetAddress", self.street_address)
         writer.write_bool_value("Suspended", self.suspended)
         writer.write_int_value("TotalBandwidthUsed", self.total_bandwidth_used)
+        writer.write_float_value("TrialBalance", self.trial_balance)
         writer.write_int_value("TrialBandwidthLimit", self.trial_bandwidth_limit)
         writer.write_bool_value("TwoFactorAuthenticationEnabled", self.two_factor_authentication_enabled)
         writer.write_int_value("UnreadSupportTicketCount", self.unread_support_ticket_count)

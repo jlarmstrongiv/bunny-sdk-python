@@ -16,6 +16,8 @@ class EdgeRule(AdditionalDataHolder, Parsable):
     action_parameter1: Optional[str] = None
     # The Action parameter 2. The value depends on other parameters of the edge rule.
     action_parameter2: Optional[str] = None
+    # The Action parameter 3. The value depends on other parameters of the edge rule.
+    action_parameter3: Optional[str] = None
     # The ActionType property
     action_type: Optional[float] = None
     # The description of the edge rule
@@ -26,6 +28,8 @@ class EdgeRule(AdditionalDataHolder, Parsable):
     extra_actions: Optional[List[Action]] = None
     # The unique GUID of the edge rule
     guid: Optional[str] = None
+    # The OrderIndex property
+    order_index: Optional[int] = None
     # The TriggerMatchingType property
     trigger_matching_type: Optional[float] = None
     # The Triggers property
@@ -56,11 +60,13 @@ class EdgeRule(AdditionalDataHolder, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "ActionParameter1": lambda n : setattr(self, 'action_parameter1', n.get_str_value()),
             "ActionParameter2": lambda n : setattr(self, 'action_parameter2', n.get_str_value()),
+            "ActionParameter3": lambda n : setattr(self, 'action_parameter3', n.get_str_value()),
             "ActionType": lambda n : setattr(self, 'action_type', n.get_float_value()),
             "Description": lambda n : setattr(self, 'description', n.get_str_value()),
             "Enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "ExtraActions": lambda n : setattr(self, 'extra_actions', n.get_collection_of_object_values(Action)),
             "Guid": lambda n : setattr(self, 'guid', n.get_str_value()),
+            "OrderIndex": lambda n : setattr(self, 'order_index', n.get_int_value()),
             "TriggerMatchingType": lambda n : setattr(self, 'trigger_matching_type', n.get_float_value()),
             "Triggers": lambda n : setattr(self, 'triggers', n.get_collection_of_object_values(Trigger)),
         }
@@ -76,11 +82,12 @@ class EdgeRule(AdditionalDataHolder, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("ActionParameter1", self.action_parameter1)
         writer.write_str_value("ActionParameter2", self.action_parameter2)
+        writer.write_str_value("ActionParameter3", self.action_parameter3)
         writer.write_float_value("ActionType", self.action_type)
         writer.write_str_value("Description", self.description)
         writer.write_bool_value("Enabled", self.enabled)
         writer.write_collection_of_object_values("ExtraActions", self.extra_actions)
-        writer.write_str_value("Guid", self.guid)
+        writer.write_int_value("OrderIndex", self.order_index)
         writer.write_float_value("TriggerMatchingType", self.trigger_matching_type)
         writer.write_collection_of_object_values("Triggers", self.triggers)
         writer.write_additional_data_value(self.additional_data)

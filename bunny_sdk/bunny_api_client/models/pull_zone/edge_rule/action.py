@@ -12,6 +12,8 @@ class Action(AdditionalDataHolder, Parsable):
     action_parameter1: Optional[str] = None
     # The ActionParameter2 property
     action_parameter2: Optional[str] = None
+    # The ActionParameter3 property
+    action_parameter3: Optional[str] = None
     # The ActionType property
     action_type: Optional[float] = None
     
@@ -34,6 +36,7 @@ class Action(AdditionalDataHolder, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "ActionParameter1": lambda n : setattr(self, 'action_parameter1', n.get_str_value()),
             "ActionParameter2": lambda n : setattr(self, 'action_parameter2', n.get_str_value()),
+            "ActionParameter3": lambda n : setattr(self, 'action_parameter3', n.get_str_value()),
             "ActionType": lambda n : setattr(self, 'action_type', n.get_float_value()),
         }
         return fields
@@ -48,6 +51,7 @@ class Action(AdditionalDataHolder, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("ActionParameter1", self.action_parameter1)
         writer.write_str_value("ActionParameter2", self.action_parameter2)
+        writer.write_str_value("ActionParameter3", self.action_parameter3)
         writer.write_float_value("ActionType", self.action_type)
         writer.write_additional_data_value(self.additional_data)
     

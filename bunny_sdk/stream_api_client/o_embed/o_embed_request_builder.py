@@ -26,7 +26,7 @@ class OEmbedRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/OEmbed?expires={expires}{&maxHeight,maxWidth,token,url}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/OEmbed?expires={expires}&url={url}{&maxHeight,maxWidth,token}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OEmbedRequestBuilderGetQueryParameters]] = None) -> Optional[OEmbedGetResponse]:
         """

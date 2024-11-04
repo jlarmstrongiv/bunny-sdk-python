@@ -11,7 +11,7 @@ class WithMmWithDdWithYyRequestBuilder(BaseRequestBuilder):
     """
     Builds and executes requests for operations under /{mm}-{dd}-{yy}
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], dd: Optional[int] = None, mm: Optional[int] = None, yy: Optional[int] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], dd: Optional[str] = None, mm: Optional[str] = None, yy: Optional[str] = None) -> None:
         """
         Instantiates a new WithMmWithDdWithYyRequestBuilder and sets the default values.
         param dd: The path parameter: dd
@@ -22,9 +22,9 @@ class WithMmWithDdWithYyRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['dd'] = str(dd)
-            path_parameters['mm'] = str(mm)
-            path_parameters['yy'] = str(yy)
+            path_parameters['dd'] = dd
+            path_parameters['mm'] = mm
+            path_parameters['yy'] = yy
         super().__init__(request_adapter, "{+baseurl}/{mm}-{dd}-{yy}", path_parameters)
     
     def with_pull_zone_id_log(self,pull_zone_id: int) -> WithPullZoneIdLogRequestBuilder:

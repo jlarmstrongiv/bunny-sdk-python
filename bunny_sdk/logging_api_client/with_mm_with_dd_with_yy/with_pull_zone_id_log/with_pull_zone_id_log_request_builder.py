@@ -28,10 +28,10 @@ class WithPullZoneIdLogRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['pullZoneId'] = str(pull_zone_id)
+            path_parameters['pullZoneId'] = pull_zone_id
         super().__init__(request_adapter, "{+baseurl}/{mm}-{dd}-{yy}/{pullZoneId}.log?end={end}&order={order}&search={search}&start={start}&status={status}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[WithPullZoneIdLogRequestBuilderGetQueryParameters]] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration[WithPullZoneIdLogRequestBuilderGetQueryParameters]] = None) -> Optional[bytes]:
         """
         [LoggingApi API Docs](https://docs.bunny.net/docs/cdn-logging-api)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.

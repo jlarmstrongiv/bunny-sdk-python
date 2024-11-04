@@ -19,6 +19,8 @@ if TYPE_CHECKING:
     from .item.item_request_builder import ItemRequestBuilder
     from .load_free_certificate.load_free_certificate_request_builder import LoadFreeCertificateRequestBuilder
     from .pullzone_get_response import PullzoneGetResponse
+    from .set_zone_security_enabled.set_zone_security_enabled_request_builder import SetZoneSecurityEnabledRequestBuilder
+    from .set_zone_security_include_hash_remote_i_p_enabled.set_zone_security_include_hash_remote_i_p_enabled_request_builder import SetZoneSecurityIncludeHashRemoteIPEnabledRequestBuilder
 
 class PullzoneRequestBuilder(BaseRequestBuilder):
     """
@@ -133,6 +135,24 @@ class PullzoneRequestBuilder(BaseRequestBuilder):
         from .load_free_certificate.load_free_certificate_request_builder import LoadFreeCertificateRequestBuilder
 
         return LoadFreeCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_zone_security_enabled(self) -> SetZoneSecurityEnabledRequestBuilder:
+        """
+        The setZoneSecurityEnabled property
+        """
+        from .set_zone_security_enabled.set_zone_security_enabled_request_builder import SetZoneSecurityEnabledRequestBuilder
+
+        return SetZoneSecurityEnabledRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_zone_security_include_hash_remote_i_p_enabled(self) -> SetZoneSecurityIncludeHashRemoteIPEnabledRequestBuilder:
+        """
+        The setZoneSecurityIncludeHashRemoteIPEnabled property
+        """
+        from .set_zone_security_include_hash_remote_i_p_enabled.set_zone_security_include_hash_remote_i_p_enabled_request_builder import SetZoneSecurityIncludeHashRemoteIPEnabledRequestBuilder
+
+        return SetZoneSecurityIncludeHashRemoteIPEnabledRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PullzoneRequestBuilderGetQueryParameters():

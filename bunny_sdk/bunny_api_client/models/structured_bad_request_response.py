@@ -56,7 +56,7 @@ class StructuredBadRequestResponse(APIError):
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def primary_message(self) -> str:
+    def primary_message(self) -> Optional[str]:
         """
         The primary error message.
         """

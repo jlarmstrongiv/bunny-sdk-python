@@ -14,7 +14,7 @@ from warnings import warn
 
 class WithFileNameItemRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /{storageZoneName}/{path}/{fileName}
+    Builds and executes requests for operations under /{storageZoneName}/{+path}/{fileName}
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
@@ -23,9 +23,9 @@ class WithFileNameItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/{storageZoneName}/{path}/{fileName}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/{storageZoneName}/{+path}/{fileName}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         [DeleteFile API Docs](https://docs.bunny.net/reference/delete_-storagezonename-path-filename)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -38,7 +38,7 @@ class WithFileNameItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", None)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         [DownloadFile API Docs](https://docs.bunny.net/reference/get_-storagezonename-path-filename)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.

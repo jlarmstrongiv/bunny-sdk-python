@@ -15,6 +15,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item.with_storage_zone_name_item_request_builder import WithStorageZoneNameItemRequestBuilder
+    from .item.with_storage_zone_name_slash_request_builder import WithStorageZoneNameSlashRequestBuilder
 
 class EdgeStorageApiClient(BaseRequestBuilder):
     """
@@ -43,7 +44,7 @@ class EdgeStorageApiClient(BaseRequestBuilder):
     def by_storage_zone_name(self,storage_zone_name: str) -> WithStorageZoneNameItemRequestBuilder:
         """
         Gets an item from the EdgeStorageApiClient.item collection
-        param storage_zone_name: The name of your storage zone where you are connecting to.
+        param storage_zone_name: the name of your storage zone where you are connecting to.
         Returns: WithStorageZoneNameItemRequestBuilder
         """
         if storage_zone_name is None:
@@ -53,5 +54,17 @@ class EdgeStorageApiClient(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["storageZoneName"] = storage_zone_name
         return WithStorageZoneNameItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def with_storage_zone_name_slash(self,storage_zone_name: str) -> WithStorageZoneNameSlashRequestBuilder:
+        """
+        Builds and executes requests for operations under /{storageZoneName}/
+        param storage_zone_name: The name of your storage zone where you are connecting to.
+        Returns: WithStorageZoneNameSlashRequestBuilder
+        """
+        if storage_zone_name is None:
+            raise TypeError("storage_zone_name cannot be null.")
+        from .item.with_storage_zone_name_slash_request_builder import WithStorageZoneNameSlashRequestBuilder
+
+        return WithStorageZoneNameSlashRequestBuilder(self.request_adapter, self.path_parameters, storage_zone_name)
     
 

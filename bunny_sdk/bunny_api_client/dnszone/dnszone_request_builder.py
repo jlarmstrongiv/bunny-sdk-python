@@ -76,7 +76,7 @@ class DnszoneRequestBuilder(BaseRequestBuilder):
         )
         from ..models.structured_bad_request_response import StructuredBadRequestResponse
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "400": StructuredBadRequestResponse,
         }
         if not self.request_adapter:

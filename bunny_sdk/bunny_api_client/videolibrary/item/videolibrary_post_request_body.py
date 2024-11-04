@@ -59,6 +59,10 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
     custom_h_t_m_l: Optional[str] = None
     # The date when the video library was created
     date_created: Optional[datetime.datetime] = None
+    # The DrmBasePriceOverride property
+    drm_base_price_override: Optional[float] = None
+    # The DrmCostPerLicenseOverride property
+    drm_cost_per_license_override: Optional[float] = None
     # The DrmVersion property
     drm_version: Optional[int] = None
     # Determines if content tagging should be enabled for this library.
@@ -67,6 +71,8 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
     enable_d_r_m: Optional[bool] = None
     # Determines if the MP4 fallback feature is enabled
     enable_m_p4_fallback: Optional[bool] = None
+    # The EnableMultiAudioTrackSupport property
+    enable_multi_audio_track_support: Optional[bool] = None
     # Determines if the automatic audio transcribing is currently enabled for this zone.
     enable_transcribing: Optional[bool] = None
     # Determines if automatic transcribing description generation is currently enabled.
@@ -75,6 +81,8 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
     enable_transcribing_title_generation: Optional[bool] = None
     # The comma separated list of enabled resolutions
     enabled_resolutions: Optional[str] = None
+    # The EncodingTier property
+    encoding_tier: Optional[int] = None
     # The captions font family.
     font_family: Optional[str] = None
     # The GoogleWidevineDrm property
@@ -83,14 +91,26 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
     has_watermark: Optional[bool] = None
     # The Id property
     id: Optional[int] = None
+    # The JitEncodingEnabled property
+    jit_encoding_enabled: Optional[bool] = None
     # Determines if the original video files should be stored after encoding
     keep_original_files: Optional[bool] = None
+    # The MonthlyChargesEnterpriseDrm property
+    monthly_charges_enterprise_drm: Optional[float] = None
+    # The MonthlyChargesPremiumEncoding property
+    monthly_charges_premium_encoding: Optional[float] = None
+    # The MonthlyChargesTranscribing property
+    monthly_charges_transcribing: Optional[float] = None
     # The name of the Video Library.
     name: Optional[str] = None
+    # The OutputCodecs property
+    output_codecs: Optional[str] = None
     # The key color of the player.
     player_key_color: Optional[str] = None
     # Determines if the player token authentication is enabled
     player_token_authentication_enabled: Optional[bool] = None
+    # The PremiumEncodingPriceOverride property
+    premium_encoding_price_override: Optional[float] = None
     # The ID of the connected underlying pull zone
     pull_zone_id: Optional[int] = None
     # The PullZoneType property
@@ -111,8 +131,12 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
     traffic_usage: Optional[int] = None
     # The TranscribingCaptionLanguages property
     transcribing_caption_languages: Optional[List[str]] = None
+    # The TranscribingPriceOverride property
+    transcribing_price_override: Optional[float] = None
     # The UI language of the player
     u_i_language: Optional[str] = None
+    # The UseSeparateAudioStream property
+    use_separate_audio_stream: Optional[bool] = None
     # The URL of the VAST tag endpoint for advertising configuration
     vast_tag_url: Optional[str] = None
     # The vi.ai publisher id for advertising configuration
@@ -178,22 +202,32 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
             "Controls": lambda n : setattr(self, 'controls', n.get_str_value()),
             "CustomHTML": lambda n : setattr(self, 'custom_h_t_m_l', n.get_str_value()),
             "DateCreated": lambda n : setattr(self, 'date_created', n.get_datetime_value()),
+            "DrmBasePriceOverride": lambda n : setattr(self, 'drm_base_price_override', n.get_float_value()),
+            "DrmCostPerLicenseOverride": lambda n : setattr(self, 'drm_cost_per_license_override', n.get_float_value()),
             "DrmVersion": lambda n : setattr(self, 'drm_version', n.get_int_value()),
             "EnableContentTagging": lambda n : setattr(self, 'enable_content_tagging', n.get_bool_value()),
             "EnableDRM": lambda n : setattr(self, 'enable_d_r_m', n.get_bool_value()),
             "EnableMP4Fallback": lambda n : setattr(self, 'enable_m_p4_fallback', n.get_bool_value()),
+            "EnableMultiAudioTrackSupport": lambda n : setattr(self, 'enable_multi_audio_track_support', n.get_bool_value()),
             "EnableTranscribing": lambda n : setattr(self, 'enable_transcribing', n.get_bool_value()),
             "EnableTranscribingDescriptionGeneration": lambda n : setattr(self, 'enable_transcribing_description_generation', n.get_bool_value()),
             "EnableTranscribingTitleGeneration": lambda n : setattr(self, 'enable_transcribing_title_generation', n.get_bool_value()),
             "EnabledResolutions": lambda n : setattr(self, 'enabled_resolutions', n.get_str_value()),
+            "EncodingTier": lambda n : setattr(self, 'encoding_tier', n.get_int_value()),
             "FontFamily": lambda n : setattr(self, 'font_family', n.get_str_value()),
             "GoogleWidevineDrm": lambda n : setattr(self, 'google_widevine_drm', n.get_object_value(VideolibraryPostRequestBody_GoogleWidevineDrm)),
             "HasWatermark": lambda n : setattr(self, 'has_watermark', n.get_bool_value()),
             "Id": lambda n : setattr(self, 'id', n.get_int_value()),
+            "JitEncodingEnabled": lambda n : setattr(self, 'jit_encoding_enabled', n.get_bool_value()),
             "KeepOriginalFiles": lambda n : setattr(self, 'keep_original_files', n.get_bool_value()),
+            "MonthlyChargesEnterpriseDrm": lambda n : setattr(self, 'monthly_charges_enterprise_drm', n.get_float_value()),
+            "MonthlyChargesPremiumEncoding": lambda n : setattr(self, 'monthly_charges_premium_encoding', n.get_float_value()),
+            "MonthlyChargesTranscribing": lambda n : setattr(self, 'monthly_charges_transcribing', n.get_float_value()),
             "Name": lambda n : setattr(self, 'name', n.get_str_value()),
+            "OutputCodecs": lambda n : setattr(self, 'output_codecs', n.get_str_value()),
             "PlayerKeyColor": lambda n : setattr(self, 'player_key_color', n.get_str_value()),
             "PlayerTokenAuthenticationEnabled": lambda n : setattr(self, 'player_token_authentication_enabled', n.get_bool_value()),
+            "PremiumEncodingPriceOverride": lambda n : setattr(self, 'premium_encoding_price_override', n.get_float_value()),
             "PullZoneId": lambda n : setattr(self, 'pull_zone_id', n.get_int_value()),
             "PullZoneType": lambda n : setattr(self, 'pull_zone_type', n.get_float_value()),
             "ReadOnlyApiKey": lambda n : setattr(self, 'read_only_api_key', n.get_str_value()),
@@ -204,7 +238,9 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
             "StorageZoneId": lambda n : setattr(self, 'storage_zone_id', n.get_int_value()),
             "TrafficUsage": lambda n : setattr(self, 'traffic_usage', n.get_int_value()),
             "TranscribingCaptionLanguages": lambda n : setattr(self, 'transcribing_caption_languages', n.get_collection_of_primitive_values(str)),
+            "TranscribingPriceOverride": lambda n : setattr(self, 'transcribing_price_override', n.get_float_value()),
             "UILanguage": lambda n : setattr(self, 'u_i_language', n.get_str_value()),
+            "UseSeparateAudioStream": lambda n : setattr(self, 'use_separate_audio_stream', n.get_bool_value()),
             "VastTagUrl": lambda n : setattr(self, 'vast_tag_url', n.get_str_value()),
             "ViAiPublisherId": lambda n : setattr(self, 'vi_ai_publisher_id', n.get_str_value()),
             "VideoCount": lambda n : setattr(self, 'video_count', n.get_int_value()),
@@ -240,21 +276,34 @@ class VideolibraryPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_int_value("CaptionsFontSize", self.captions_font_size)
         writer.write_str_value("Controls", self.controls)
         writer.write_str_value("CustomHTML", self.custom_h_t_m_l)
+        writer.write_float_value("DrmBasePriceOverride", self.drm_base_price_override)
+        writer.write_float_value("DrmCostPerLicenseOverride", self.drm_cost_per_license_override)
         writer.write_bool_value("EnableContentTagging", self.enable_content_tagging)
         writer.write_bool_value("EnableDRM", self.enable_d_r_m)
         writer.write_bool_value("EnableMP4Fallback", self.enable_m_p4_fallback)
+        writer.write_bool_value("EnableMultiAudioTrackSupport", self.enable_multi_audio_track_support)
         writer.write_bool_value("EnableTranscribing", self.enable_transcribing)
         writer.write_bool_value("EnableTranscribingDescriptionGeneration", self.enable_transcribing_description_generation)
         writer.write_bool_value("EnableTranscribingTitleGeneration", self.enable_transcribing_title_generation)
         writer.write_str_value("EnabledResolutions", self.enabled_resolutions)
+        writer.write_int_value("EncodingTier", self.encoding_tier)
         writer.write_str_value("FontFamily", self.font_family)
+        writer.write_bool_value("JitEncodingEnabled", self.jit_encoding_enabled)
         writer.write_bool_value("KeepOriginalFiles", self.keep_original_files)
+        writer.write_float_value("MonthlyChargesEnterpriseDrm", self.monthly_charges_enterprise_drm)
+        writer.write_float_value("MonthlyChargesPremiumEncoding", self.monthly_charges_premium_encoding)
+        writer.write_float_value("MonthlyChargesTranscribing", self.monthly_charges_transcribing)
         writer.write_str_value("Name", self.name)
+        writer.write_str_value("OutputCodecs", self.output_codecs)
         writer.write_str_value("PlayerKeyColor", self.player_key_color)
         writer.write_bool_value("PlayerTokenAuthenticationEnabled", self.player_token_authentication_enabled)
+        writer.write_float_value("PremiumEncodingPriceOverride", self.premium_encoding_price_override)
+        writer.write_collection_of_enum_values("ReplicationRegions", self.replication_regions)
         writer.write_bool_value("ShowHeatmap", self.show_heatmap)
         writer.write_collection_of_primitive_values("TranscribingCaptionLanguages", self.transcribing_caption_languages)
+        writer.write_float_value("TranscribingPriceOverride", self.transcribing_price_override)
         writer.write_str_value("UILanguage", self.u_i_language)
+        writer.write_bool_value("UseSeparateAudioStream", self.use_separate_audio_stream)
         writer.write_str_value("VastTagUrl", self.vast_tag_url)
         writer.write_str_value("ViAiPublisherId", self.vi_ai_publisher_id)
         writer.write_int_value("WatermarkHeight", self.watermark_height)

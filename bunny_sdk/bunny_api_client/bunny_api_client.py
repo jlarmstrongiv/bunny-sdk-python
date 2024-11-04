@@ -21,10 +21,12 @@ if TYPE_CHECKING:
     from .country.country_request_builder import CountryRequestBuilder
     from .dmca.dmca_request_builder import DmcaRequestBuilder
     from .dnszone.dnszone_request_builder import DnszoneRequestBuilder
+    from .integration.integration_request_builder import IntegrationRequestBuilder
     from .pullzone.pullzone_request_builder import PullzoneRequestBuilder
     from .purge.purge_request_builder import PurgeRequestBuilder
     from .region.region_request_builder import RegionRequestBuilder
     from .search.search_request_builder import SearchRequestBuilder
+    from .shield.shield_request_builder import ShieldRequestBuilder
     from .statistics.statistics_request_builder import StatisticsRequestBuilder
     from .storagezone.storagezone_request_builder import StoragezoneRequestBuilder
     from .user.user_request_builder import UserRequestBuilder
@@ -118,6 +120,15 @@ class BunnyApiClient(BaseRequestBuilder):
         return DnszoneRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def integration(self) -> IntegrationRequestBuilder:
+        """
+        The integration property
+        """
+        from .integration.integration_request_builder import IntegrationRequestBuilder
+
+        return IntegrationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def pullzone(self) -> PullzoneRequestBuilder:
         """
         The pullzone property
@@ -152,6 +163,15 @@ class BunnyApiClient(BaseRequestBuilder):
         from .search.search_request_builder import SearchRequestBuilder
 
         return SearchRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def shield(self) -> ShieldRequestBuilder:
+        """
+        The shield property
+        """
+        from .shield.shield_request_builder import ShieldRequestBuilder
+
+        return ShieldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def statistics(self) -> StatisticsRequestBuilder:

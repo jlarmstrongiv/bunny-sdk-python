@@ -17,7 +17,7 @@ class BunnySdk:
         authentication_provider = ApiKeyAuthenticationProvider(
             key_location=KeyLocation.Header,
             api_key=access_key,
-            parameter_name="AccessKey",
+            parameter_name="accesskey",
         )
 
         request_adapter = HttpxRequestAdapter(authentication_provider)
@@ -31,7 +31,7 @@ class BunnySdk:
         authentication_provider = ApiKeyAuthenticationProvider(
             key_location=KeyLocation.Header,
             api_key=access_key,
-            parameter_name="AccessKey",
+            parameter_name="accesskey",
         )
 
         request_adapter = HttpxRequestAdapter(authentication_provider)
@@ -44,7 +44,7 @@ class BunnySdk:
         authentication_provider = ApiKeyAuthenticationProvider(
             key_location=KeyLocation.Header,
             api_key=access_key,
-            parameter_name="AccessKey",
+            parameter_name="accesskey",
         )
 
         request_adapter = HttpxRequestAdapter(authentication_provider)
@@ -56,7 +56,7 @@ class BunnySdk:
         authentication_provider = ApiKeyAuthenticationProvider(
             key_location=KeyLocation.Header,
             api_key=access_key,
-            parameter_name="AccessKey",
+            parameter_name="accesskey",
         )
 
         request_adapter = HttpxRequestAdapter(authentication_provider)

@@ -40,7 +40,7 @@ class LoggingApiClient(BaseRequestBuilder):
             self.request_adapter.base_url = "https://logging.bunnycdn.com"
         self.path_parameters["base_url"] = self.request_adapter.base_url
     
-    def with_mm_with_dd_with_yy(self,dd: int, mm: int, yy: int) -> WithMmWithDdWithYyRequestBuilder:
+    def with_mm_with_dd_with_yy(self,dd: str, mm: str, yy: str) -> WithMmWithDdWithYyRequestBuilder:
         """
         Builds and executes requests for operations under /{mm}-{dd}-{yy}
         param dd: The path parameter: dd

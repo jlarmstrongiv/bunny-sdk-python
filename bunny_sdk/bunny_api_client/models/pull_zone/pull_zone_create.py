@@ -181,6 +181,8 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
     optimizer_desktop_max_width: Optional[int] = None
     # Determines the image manipulation should be enabled
     optimizer_enable_manipulation_engine: Optional[bool] = None
+    # The OptimizerEnableUpscaling property
+    optimizer_enable_upscaling: Optional[bool] = None
     # Determines if the WebP optimization should be enabled
     optimizer_enable_web_p: Optional[bool] = None
     # Determines if the optimizer should be enabled for this zone
@@ -203,6 +205,8 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
     optimizer_static_html_word_press_bypass_cookie: Optional[str] = None
     # The OptimizerStaticHtmlWordPressPath property
     optimizer_static_html_word_press_path: Optional[str] = None
+    # The OptimizerTunnelEnabled property
+    optimizer_tunnel_enabled: Optional[bool] = None
     # Determines if image watermarking should be enabled
     optimizer_watermark_enabled: Optional[bool] = None
     # Sets the minimum image size to which the watermark will be added
@@ -273,6 +277,10 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
     shield_d_dos_protection_enabled: Optional[bool] = None
     # The ShieldDDosProtectionType property
     shield_d_dos_protection_type: Optional[float] = None
+    # The StickySessionCookieName property
+    sticky_session_cookie_name: Optional[str] = None
+    # The StickySessionType property
+    sticky_session_type: Optional[int] = None
     # The ID of the storage zone that the pull zone is linked to
     storage_zone_id: Optional[int] = None
     # The Type property
@@ -410,6 +418,7 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
             "OptimizerClasses": lambda n : setattr(self, 'optimizer_classes', n.get_collection_of_object_values(OptimizerClass)),
             "OptimizerDesktopMaxWidth": lambda n : setattr(self, 'optimizer_desktop_max_width', n.get_int_value()),
             "OptimizerEnableManipulationEngine": lambda n : setattr(self, 'optimizer_enable_manipulation_engine', n.get_bool_value()),
+            "OptimizerEnableUpscaling": lambda n : setattr(self, 'optimizer_enable_upscaling', n.get_bool_value()),
             "OptimizerEnableWebP": lambda n : setattr(self, 'optimizer_enable_web_p', n.get_bool_value()),
             "OptimizerEnabled": lambda n : setattr(self, 'optimizer_enabled', n.get_bool_value()),
             "OptimizerForceClasses": lambda n : setattr(self, 'optimizer_force_classes', n.get_bool_value()),
@@ -421,6 +430,7 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
             "OptimizerStaticHtmlEnabled": lambda n : setattr(self, 'optimizer_static_html_enabled', n.get_bool_value()),
             "OptimizerStaticHtmlWordPressBypassCookie": lambda n : setattr(self, 'optimizer_static_html_word_press_bypass_cookie', n.get_str_value()),
             "OptimizerStaticHtmlWordPressPath": lambda n : setattr(self, 'optimizer_static_html_word_press_path', n.get_str_value()),
+            "OptimizerTunnelEnabled": lambda n : setattr(self, 'optimizer_tunnel_enabled', n.get_bool_value()),
             "OptimizerWatermarkEnabled": lambda n : setattr(self, 'optimizer_watermark_enabled', n.get_bool_value()),
             "OptimizerWatermarkMinImageSize": lambda n : setattr(self, 'optimizer_watermark_min_image_size', n.get_int_value()),
             "OptimizerWatermarkOffset": lambda n : setattr(self, 'optimizer_watermark_offset', n.get_float_value()),
@@ -456,6 +466,8 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
             "RoutingFilters": lambda n : setattr(self, 'routing_filters', n.get_collection_of_enum_values(PullZoneCreate_RoutingFilters)),
             "ShieldDDosProtectionEnabled": lambda n : setattr(self, 'shield_d_dos_protection_enabled', n.get_bool_value()),
             "ShieldDDosProtectionType": lambda n : setattr(self, 'shield_d_dos_protection_type', n.get_float_value()),
+            "StickySessionCookieName": lambda n : setattr(self, 'sticky_session_cookie_name', n.get_str_value()),
+            "StickySessionType": lambda n : setattr(self, 'sticky_session_type', n.get_int_value()),
             "StorageZoneId": lambda n : setattr(self, 'storage_zone_id', n.get_int_value()),
             "Type": lambda n : setattr(self, 'type', n.get_float_value()),
             "UseBackgroundUpdate": lambda n : setattr(self, 'use_background_update', n.get_bool_value()),
@@ -563,6 +575,7 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
         writer.write_collection_of_object_values("OptimizerClasses", self.optimizer_classes)
         writer.write_int_value("OptimizerDesktopMaxWidth", self.optimizer_desktop_max_width)
         writer.write_bool_value("OptimizerEnableManipulationEngine", self.optimizer_enable_manipulation_engine)
+        writer.write_bool_value("OptimizerEnableUpscaling", self.optimizer_enable_upscaling)
         writer.write_bool_value("OptimizerEnableWebP", self.optimizer_enable_web_p)
         writer.write_bool_value("OptimizerEnabled", self.optimizer_enabled)
         writer.write_bool_value("OptimizerForceClasses", self.optimizer_force_classes)
@@ -574,6 +587,7 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
         writer.write_bool_value("OptimizerStaticHtmlEnabled", self.optimizer_static_html_enabled)
         writer.write_str_value("OptimizerStaticHtmlWordPressBypassCookie", self.optimizer_static_html_word_press_bypass_cookie)
         writer.write_str_value("OptimizerStaticHtmlWordPressPath", self.optimizer_static_html_word_press_path)
+        writer.write_bool_value("OptimizerTunnelEnabled", self.optimizer_tunnel_enabled)
         writer.write_bool_value("OptimizerWatermarkEnabled", self.optimizer_watermark_enabled)
         writer.write_int_value("OptimizerWatermarkMinImageSize", self.optimizer_watermark_min_image_size)
         writer.write_float_value("OptimizerWatermarkOffset", self.optimizer_watermark_offset)
@@ -609,6 +623,8 @@ class PullZoneCreate(AdditionalDataHolder, Parsable):
         writer.write_collection_of_enum_values("RoutingFilters", self.routing_filters)
         writer.write_bool_value("ShieldDDosProtectionEnabled", self.shield_d_dos_protection_enabled)
         writer.write_float_value("ShieldDDosProtectionType", self.shield_d_dos_protection_type)
+        writer.write_str_value("StickySessionCookieName", self.sticky_session_cookie_name)
+        writer.write_int_value("StickySessionType", self.sticky_session_type)
         writer.write_int_value("StorageZoneId", self.storage_zone_id)
         writer.write_float_value("Type", self.type)
         writer.write_bool_value("UseBackgroundUpdate", self.use_background_update)

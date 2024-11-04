@@ -2,13 +2,13 @@
 
 [[package]]
 name = "anyio"
-version = "4.4.0"
+version = "4.5.2"
 description = "High level compatibility layer for multiple asynchronous event loop implementations"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "anyio-4.4.0-py3-none-any.whl", hash = "sha256:c1b2d8f46a8a812513012e1107cb0e68c17159a7a594208005a57dc776e1bdc7"},
-    {file = "anyio-4.4.0.tar.gz", hash = "sha256:5aadc6a1bbb7cdb0bede386cac5e2940f5e2ff3aa20277e991cf028e0585ce94"},
+    {file = "anyio-4.5.2-py3-none-any.whl", hash = "sha256:c011ee36bc1e8ba40e5a81cb9df91925c218fe9b778554e0b56a21e1b5d4716f"},
+    {file = "anyio-4.5.2.tar.gz", hash = "sha256:23009af4ed04ce05991845451e11ef02fc7c5ed29179ac9a420e5ad0ac7ddc5b"},
 ]
 
 [package.dependencies]
@@ -18,9 +18,9 @@ sniffio = ">=1.1"
 typing-extensions = {version = ">=4.1", markers = "python_version < \"3.11\""}
 
 [package.extras]
-doc = ["Sphinx (>=7)", "packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme"]
-test = ["anyio[trio]", "coverage[toml] (>=7)", "exceptiongroup (>=1.2.0)", "hypothesis (>=4.0)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (>=0.17)"]
-trio = ["trio (>=0.23)"]
+doc = ["Sphinx (>=7.4,<8.0)", "packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme"]
+test = ["anyio[trio]", "coverage[toml] (>=7)", "exceptiongroup (>=1.2.0)", "hypothesis (>=4.0)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "truststore (>=0.9.1)", "uvloop (>=0.21.0b1)"]
+trio = ["trio (>=0.26.1)"]
 
 [[package]]
 name = "backports-zoneinfo"
@@ -131,13 +131,13 @@ files = [
 
 [[package]]
 name = "httpcore"
-version = "1.0.5"
+version = "1.0.6"
 description = "A minimal low-level HTTP client."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "httpcore-1.0.5-py3-none-any.whl", hash = "sha256:421f18bac248b25d310f3cacd198d55b8e6125c107797b609ff9b7a6ba7991b5"},
-    {file = "httpcore-1.0.5.tar.gz", hash = "sha256:34a38e2f9291467ee3b44e89dd52615370e152954ba21721378a87b2960f7a61"},
+    {file = "httpcore-1.0.6-py3-none-any.whl", hash = "sha256:27b59625743b85577a8c0e10e55b50b5368a4f2cfe8cc7bcfa9cf00829c2682f"},
+    {file = "httpcore-1.0.6.tar.gz", hash = "sha256:73f6dbd6eb8c21bbf7ef8efad555481853f5f6acdeaff1edb0694289269ee17f"},
 ]
 
 [package.dependencies]
@@ -148,7 +148,7 @@ h11 = ">=0.13,<0.15"
 asyncio = ["anyio (>=4.0,<5.0)"]
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (==1.*)"]
-trio = ["trio (>=0.22.0,<0.26.0)"]
+trio = ["trio (>=0.22.0,<1.0)"]
 
 [[package]]
 name = "httpx"
@@ -189,14 +189,17 @@ files = [
 
 [[package]]
 name = "idna"
-version = "3.8"
+version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "idna-3.8-py3-none-any.whl", hash = "sha256:050b4e5baadcd44d760cedbd2b8e639f2ff89bbc7a5730fcc662954303377aac"},
-    {file = "idna-3.8.tar.gz", hash = "sha256:d838c2c0ed6fced7693d5e8ab8e734d5f8fda53a039c0164afb0b82e771e3603"},
+    {file = "idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3"},
+    {file = "idna-3.10.tar.gz", hash = "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9"},
 ]
+
+[package.extras]
+all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2)"]
 
 [[package]]
 name = "importlib-metadata"
@@ -219,13 +222,13 @@ test = ["flufl.flake8", "importlib-resources (>=1.3)", "jaraco.test (>=5.4)", "p
 
 [[package]]
 name = "importlib-resources"
-version = "6.4.4"
+version = "6.4.5"
 description = "Read resources from Python packages"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "importlib_resources-6.4.4-py3-none-any.whl", hash = "sha256:dda242603d1c9cd836c3368b1174ed74cb4049ecd209e7a1a0104620c18c5c11"},
-    {file = "importlib_resources-6.4.4.tar.gz", hash = "sha256:20600c8b7361938dc0bb2d5ec0297802e575df486f5a544fa414da65e13721f7"},
+    {file = "importlib_resources-6.4.5-py3-none-any.whl", hash = "sha256:ac29d5f956f01d5e4bb63102a5a19957f1b9175e45649977264a1416783bb717"},
+    {file = "importlib_resources-6.4.5.tar.gz", hash = "sha256:980862a1d16c9e147a59603677fa2aa5fd82b87f223b6cb870695bcfce830065"},
 ]
 
 [package.dependencies]
@@ -241,95 +244,97 @@ type = ["pytest-mypy"]
 
 [[package]]
 name = "microsoft-kiota-abstractions"
-version = "1.3.3"
+version = "1.6.0"
 description = "Core abstractions for kiota generated libraries in Python"
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "microsoft_kiota_abstractions-1.3.3-py2.py3-none-any.whl", hash = "sha256:deced0b01249459426d4ed45c8ab34e19250e514d4d05ce84c08893058ae06a1"},
-    {file = "microsoft_kiota_abstractions-1.3.3.tar.gz", hash = "sha256:3cc01832a2e6dc6094c4e1abf7cbef3849a87d818a3b9193ad6c83a9f88e14ff"},
+    {file = "microsoft_kiota_abstractions-1.6.0-py3-none-any.whl", hash = "sha256:ead1846da7ced9a7039bee14b0d013250ca0bc2b5790d2e0b5c2f27c5bcf8182"},
+    {file = "microsoft_kiota_abstractions-1.6.0.tar.gz", hash = "sha256:4cf8eb3f78a88619e8af6d6073ae6d15bcd075a086f86074585626ec5b8f4a08"},
 ]
 
 [package.dependencies]
-opentelemetry-api = ">=1.19.0"
-opentelemetry-sdk = ">=1.19.0"
-std-uritemplate = ">=0.0.38"
+opentelemetry-api = ">=1.27.0"
+opentelemetry-sdk = ">=1.27.0"
+std-uritemplate = ">=0.0.38,<2.0.0"
 
 [[package]]
 name = "microsoft-kiota-http"
-version = "1.3.3"
-description = "Kiota http request adapter implementation for httpx library"
+version = "1.6.0"
+description = "Core abstractions for kiota generated libraries in Python"
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "microsoft_kiota_http-1.3.3-py2.py3-none-any.whl", hash = "sha256:21109a34140bf42e18855b7cf983939b891ae30739f21a9ce045c3a715f325fd"},
-    {file = "microsoft_kiota_http-1.3.3.tar.gz", hash = "sha256:0b40f37c6c158c2e5b2dffa963a7fc342d368c1a64b8cca08631ba19d0ff94a9"},
+    {file = "microsoft_kiota_http-1.6.0-py3-none-any.whl", hash = "sha256:4cc794a94726ca938b7a47f303e9bc073f50a11624ecedf3ed34c49278686667"},
+    {file = "microsoft_kiota_http-1.6.0.tar.gz", hash = "sha256:cec70d61d64d39bcc6b903fa80122a6b88b8d1af4c96caa832e4eace540638f3"},
 ]
 
 [package.dependencies]
-httpx = {version = ">=0.23.0", extras = ["http2"]}
-microsoft-kiota_abstractions = ">=1.0.0,<2.0.0"
-opentelemetry-api = ">=1.20.0"
-opentelemetry-sdk = ">=1.20.0"
+httpx = {version = ">=0.23,<0.28", extras = ["http2"]}
+microsoft-kiota-abstractions = ">=1.6.0,<1.7.0"
+opentelemetry-api = ">=1.27.0"
+opentelemetry-sdk = ">=1.27.0"
+urllib3 = ">=2.2.2,<3.0.0"
 
 [[package]]
 name = "microsoft-kiota-serialization-form"
-version = "0.1.1"
-description = "Implementation of Kiota Serialization Interfaces for URI-Form encoded serialization"
+version = "1.6.0"
+description = "Core abstractions for kiota generated libraries in Python"
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "microsoft_kiota_serialization_form-0.1.1-py2.py3-none-any.whl", hash = "sha256:7a2da956edd3329ff74ec1a34eded910fd9cda57ce8c71f3797e359adc9993f7"},
-    {file = "microsoft_kiota_serialization_form-0.1.1.tar.gz", hash = "sha256:f72dd50081250d1e49111682eccf620d3c2e335195d50c096b35ec5a5ef59a54"},
+    {file = "microsoft_kiota_serialization_form-1.6.0-py3-none-any.whl", hash = "sha256:23d3898808d0b341de211861921a074b631c42eed03ebee61496b0df5a7cd80b"},
+    {file = "microsoft_kiota_serialization_form-1.6.0.tar.gz", hash = "sha256:ee6620b2f3b8b5294b204de3702352c838541de653d825ba1dee55ca2d27eda5"},
 ]
 
 [package.dependencies]
-microsoft-kiota_abstractions = ">=1.0.0,<2.0.0"
-pendulum = ">=3.0.0"
+microsoft-kiota-abstractions = ">=1.6.0,<1.7.0"
+pendulum = ">=3.0.0b1"
 
 [[package]]
 name = "microsoft-kiota-serialization-json"
-version = "1.3.1"
-description = "Implementation of Kiota Serialization interfaces for JSON"
+version = "1.6.0"
+description = "Core abstractions for kiota generated libraries in Python"
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "microsoft_kiota_serialization_json-1.3.1-py2.py3-none-any.whl", hash = "sha256:147f4413d1b3c8f622cc16fc228d739116de1af2dfe2c684c6220351ba73a4b4"},
-    {file = "microsoft_kiota_serialization_json-1.3.1.tar.gz", hash = "sha256:17449cb935f9301098c14b659b3bf8ba2fc49a133808419e2e9946a25f277641"},
+    {file = "microsoft_kiota_serialization_json-1.6.0-py3-none-any.whl", hash = "sha256:c3d24bcc2b6fc8a60ea4c052b7f540edc233f4dfa9d8861fd80874aa4dae61ce"},
+    {file = "microsoft_kiota_serialization_json-1.6.0.tar.gz", hash = "sha256:eaf49a694caf775d1fdfabc651f23915bd2082cfbc7cd644998694eb8db0d694"},
 ]
 
 [package.dependencies]
-microsoft-kiota_abstractions = ">=1.0.0,<2.0.0"
+microsoft-kiota-abstractions = ">=1.6.0,<1.7.0"
 pendulum = ">=3.0.0b1"
 
 [[package]]
 name = "microsoft-kiota-serialization-multipart"
-version = "0.1.0"
-description = "Implementation of Kiota Serialization Interfaces for Multipart serialization"
+version = "1.6.0"
+description = "Core abstractions for kiota generated libraries in Python"
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "microsoft_kiota_serialization_multipart-0.1.0-py2.py3-none-any.whl", hash = "sha256:ef183902e77807806b8a181cdde53ba5bc04c6c9bdb2f7d80f8bad5d720e0015"},
-    {file = "microsoft_kiota_serialization_multipart-0.1.0.tar.gz", hash = "sha256:14e89e92582e6630ddbc70ac67b70bf189dacbfc41a96d3e1d10339e86c8dde5"},
+    {file = "microsoft_kiota_serialization_multipart-1.6.0-py3-none-any.whl", hash = "sha256:48f0b0d2ad57c5f974c35f1c0cf3372b00e318ca1050c38b2d0dce419600ab1b"},
+    {file = "microsoft_kiota_serialization_multipart-1.6.0.tar.gz", hash = "sha256:c26a1de711ca465c50ee431453cd8a6fa2b5eaaf58bd739fcb6e7980bbe13160"},
 ]
 
 [package.dependencies]
-microsoft-kiota_abstractions = ">=1.0.0,<2.0.0"
+microsoft-kiota-abstractions = ">=1.6.0,<1.7.0"
+pendulum = ">=3.0.0b1"
 
 [[package]]
 name = "microsoft-kiota-serialization-text"
-version = "1.0.0"
-description = "Implementation of Kiota Serialization interfaces for text/plain"
+version = "1.6.0"
+description = "Core abstractions for kiota generated libraries in Python"
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "microsoft_kiota_serialization_text-1.0.0-py2.py3-none-any.whl", hash = "sha256:1d3789e012b603e059a36cc675d1fd08cb81e0dde423d970c0af2eabce9c0d43"},
-    {file = "microsoft_kiota_serialization_text-1.0.0.tar.gz", hash = "sha256:c3dd3f409b1c4f4963bd1e41d51b65f7e53e852130bb441d79b77dad88ee76ed"},
+    {file = "microsoft_kiota_serialization_text-1.6.0-py3-none-any.whl", hash = "sha256:0e71dd8826a2ff11118853d70c1eb02e413fdda6a6eabdeda08ebd384f4f2364"},
+    {file = "microsoft_kiota_serialization_text-1.6.0.tar.gz", hash = "sha256:0989f262dcf7703dd16bfcd70b2bf82b1100212c4a23e4ed0ec578da3250fc0d"},
 ]
 
 [package.dependencies]
-microsoft-kiota_abstractions = ">=1.0.0,<2.0.0"
-python-dateutil = ">=2.8.2"
+microsoft-kiota-abstractions = ">=1.6.0,<1.7.0"
+python-dateutil = "2.9.0.post0"
 
 [[package]]
 name = "opentelemetry-api"
@@ -538,24 +543,24 @@ files = [
 
 [[package]]
 name = "tzdata"
-version = "2024.1"
+version = "2024.2"
 description = "Provider of IANA time zone data"
 optional = false
 python-versions = ">=2"
 files = [
-    {file = "tzdata-2024.1-py2.py3-none-any.whl", hash = "sha256:9068bc196136463f5245e51efda838afa15aaeca9903f49050dfa2679db4d252"},
-    {file = "tzdata-2024.1.tar.gz", hash = "sha256:2674120f8d891909751c38abcdfd386ac0a5a1127954fbc332af6b5ceae07efd"},
+    {file = "tzdata-2024.2-py2.py3-none-any.whl", hash = "sha256:a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd"},
+    {file = "tzdata-2024.2.tar.gz", hash = "sha256:7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc"},
 ]
 
 [[package]]
 name = "urllib3"
-version = "2.2.2"
+version = "2.2.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "urllib3-2.2.2-py3-none-any.whl", hash = "sha256:a448b2f64d686155468037e1ace9f2d2199776e17f0a46610480d311f73e3472"},
-    {file = "urllib3-2.2.2.tar.gz", hash = "sha256:dd505485549a7a552833da5e6063639d0d177c04f23bc3864e41e5dc5f612168"},
+    {file = "urllib3-2.2.3-py3-none-any.whl", hash = "sha256:ca899ca043dcb1bafa3e262d73aa25c465bfb49e0bd9dd5d59f1d0acba2f8fac"},
+    {file = "urllib3-2.2.3.tar.gz", hash = "sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9"},
 ]
 
 [package.extras]
@@ -645,13 +650,13 @@ files = [
 
 [[package]]
 name = "zipp"
-version = "3.20.1"
+version = "3.20.2"
 description = "Backport of pathlib-compatible object wrapper for zip files"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "zipp-3.20.1-py3-none-any.whl", hash = "sha256:9960cd8967c8f85a56f920d5d507274e74f9ff813a0ab8889a5b5be2daf44064"},
-    {file = "zipp-3.20.1.tar.gz", hash = "sha256:c22b14cc4763c5a5b04134207736c107db42e9d3ef2d9779d465f5f1bcba572b"},
+    {file = "zipp-3.20.2-py3-none-any.whl", hash = "sha256:a817ac80d6cf4b23bf7f2828b7cabf326f15a001bea8b1f9b49631780ba28350"},
+    {file = "zipp-3.20.2.tar.gz", hash = "sha256:bc9eb26f4506fda01b81bcde0ca78103b6e62f991b381fec825435c836edbc29"},
 ]
 
 [package.extras]
@@ -665,4 +670,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "7229657efdd5c301eb3a7106c757d1a0ed3914b5601ccbcf5c846c75221dd473"
+content-hash = "e9aef8ae87a017c90f0266ec5a5db36cc3826b866b41c87278c0f4271821a42a"

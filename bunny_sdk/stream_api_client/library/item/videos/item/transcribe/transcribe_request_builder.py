@@ -71,6 +71,7 @@ class TranscribeRequestBuilder(BaseRequestBuilder):
         """
         force: Optional[bool] = None
 
+        # Video source language, use ISO 639-1 language code
         language: Optional[str] = None
 
     

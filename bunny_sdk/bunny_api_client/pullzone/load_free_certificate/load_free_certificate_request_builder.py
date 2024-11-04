@@ -25,7 +25,7 @@ class LoadFreeCertificateRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/pullzone/loadFreeCertificate?hostname={hostname}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[LoadFreeCertificateRequestBuilderGetQueryParameters]] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration[LoadFreeCertificateRequestBuilderGetQueryParameters]] = None) -> Optional[bytes]:
         """
         [LoadFreeCertificate API Docs](https://docs.bunny.net/reference/pullzonepublic_loadfreecertificate)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -14,11 +14,11 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.dns_zone.dns_zone import DnsZone
+    from ...models.dns_zone.dns_zone_create import DnsZoneCreate
     from ...models.structured_bad_request_response import StructuredBadRequestResponse
     from .dismissnameservercheck.dismissnameservercheck_request_builder import DismissnameservercheckRequestBuilder
     from .export.export_request_builder import ExportRequestBuilder
     from .import_.import_request_builder import ImportRequestBuilder
-    from .post_request_body import PostRequestBody
     from .recheckdns.recheckdns_request_builder import RecheckdnsRequestBuilder
     from .records.records_request_builder import RecordsRequestBuilder
     from .statistics.statistics_request_builder import StatisticsRequestBuilder
@@ -47,7 +47,7 @@ class ItemRequestBuilder(BaseRequestBuilder):
         )
         from ...models.structured_bad_request_response import StructuredBadRequestResponse
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "400": StructuredBadRequestResponse,
         }
         if not self.request_adapter:
@@ -69,10 +69,10 @@ class ItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DnsZone, None)
     
-    async def post(self,body: PostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DnsZone]:
+    async def post(self,body: DnsZoneCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DnsZone]:
         """
         [UpdateDnsZone API Docs](https://docs.bunny.net/reference/dnszonepublic_update)
-        param body: The template for adding optional properties.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DnsZone]
         """
@@ -109,10 +109,10 @@ class ItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: PostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: DnsZoneCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         [UpdateDnsZone API Docs](https://docs.bunny.net/reference/dnszonepublic_update)
-        param body: The template for adding optional properties.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

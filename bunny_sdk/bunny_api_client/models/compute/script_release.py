@@ -15,6 +15,8 @@ class ScriptRelease(AdditionalDataHolder, Parsable):
     author_email: Optional[str] = None
     # The Code property
     code: Optional[str] = None
+    # The CommitSha property
+    commit_sha: Optional[str] = None
     # The DatePublished property
     date_published: Optional[datetime.datetime] = None
     # The DateReleased property
@@ -50,6 +52,7 @@ class ScriptRelease(AdditionalDataHolder, Parsable):
             "Author": lambda n : setattr(self, 'author', n.get_str_value()),
             "AuthorEmail": lambda n : setattr(self, 'author_email', n.get_str_value()),
             "Code": lambda n : setattr(self, 'code', n.get_str_value()),
+            "CommitSha": lambda n : setattr(self, 'commit_sha', n.get_str_value()),
             "DatePublished": lambda n : setattr(self, 'date_published', n.get_datetime_value()),
             "DateReleased": lambda n : setattr(self, 'date_released', n.get_datetime_value()),
             "Deleted": lambda n : setattr(self, 'deleted', n.get_bool_value()),
@@ -71,6 +74,7 @@ class ScriptRelease(AdditionalDataHolder, Parsable):
         writer.write_str_value("Author", self.author)
         writer.write_str_value("AuthorEmail", self.author_email)
         writer.write_str_value("Code", self.code)
+        writer.write_str_value("CommitSha", self.commit_sha)
         writer.write_datetime_value("DatePublished", self.date_published)
         writer.write_datetime_value("DateReleased", self.date_released)
         writer.write_bool_value("Deleted", self.deleted)

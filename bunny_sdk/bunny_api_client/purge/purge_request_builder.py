@@ -25,7 +25,7 @@ class PurgeRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/purge?async={async}&headerName={headerName}&headerValue={headerValue}&url={url}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[PurgeRequestBuilderGetQueryParameters]] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration[PurgeRequestBuilderGetQueryParameters]] = None) -> Optional[bytes]:
         """
         [PurgeUrlGet API Docs](https://docs.bunny.net/reference/purgepublic_index)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -38,7 +38,7 @@ class PurgeRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", None)
     
-    async def post(self,request_configuration: Optional[RequestConfiguration[PurgeRequestBuilderPostQueryParameters]] = None) -> bytes:
+    async def post(self,request_configuration: Optional[RequestConfiguration[PurgeRequestBuilderPostQueryParameters]] = None) -> Optional[bytes]:
         """
         [PurgeUrlPost API Docs](https://docs.bunny.net/reference/purgepublic_indexpost)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
